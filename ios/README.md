@@ -110,10 +110,10 @@ Schema (abbreviated — see [`../ARCHITECTURE.md`](../ARCHITECTURE.md) for the f
 
 ```jsonc
 {
-  "state": "good" | "confused" | "error",
+  "state": "good" | "error",
   "state_since": "2026-04-15T17:02:38Z",
   "last_checked": "2026-04-15T18:05:26Z",
-  "sources": { "anthropic": {...}, "reddit": {...} },
+  "sources": { "anthropic": { "status": "...", "active_incident": null } },
   "schema_version": 1
 }
 ```

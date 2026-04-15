@@ -50,10 +50,9 @@ It writes `docs/status.json` and `docs/history.json` in place. Uses only Python'
 
 This repo is fully public and intentionally contains no secrets:
 
-- Anthropic's status API is public and requires no auth.
-- Reddit's public JSON endpoints require no auth, just a `User-Agent` header (set in `update.py`).
+- Anthropic's status API is public and requires no auth — it's the only network dependency.
 - The GitHub Action uses the auto-injected `GITHUB_TOKEN` (never committed).
-- The widget collects no user data. No analytics, no telemetry.
+- The webpage and widget collect no user data. No analytics, no telemetry.
 
 If you think you've found a vulnerability, please email the maintainer directly rather than opening a public issue.
 
