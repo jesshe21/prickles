@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — Prickles</title>
+  <meta name="description" content="Prickles privacy policy. We collect no data. Period.">
+  <link rel="icon" type="image/png" href="assets/good.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1D1310;
+      --surface: #2C1E16;
+      --text: #F7E6C8;
+      --text-muted: #A68A70;
+      --accent: #F29D3C;
+      --border: rgba(242, 157, 60, 0.15);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--text);
+      font-family: "Karla", -apple-system, sans-serif;
+      font-size: 17px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 24px 64px; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px; }
+    .tagline { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 32px; }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 32px 0 8px; color: var(--accent); }
+    p { margin: 0 0 14px; }
+    ul { padding-left: 22px; margin: 0 0 14px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display: inline-block; margin-bottom: 24px; font-size: 0.9rem; color: var(--text-muted); }
+    footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+             font-size: 0.82rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← Back to Prickles</a>
+    <h1>Privacy Policy</h1>
+    <p class="tagline">Last updated: April 15, 2026</p>
+
+    <p>
+      <strong>Prickles collects, stores, and transmits no personal data.</strong>
+      This is the entire policy, but the details are below if you want them.
+    </p>
+
+    <h2>What we collect</h2>
+    <p>Nothing. There are no analytics, no cookies, no trackers, no session identifiers, no user accounts, and no telemetry. When you visit this page, no identifying information is sent anywhere by Prickles.</p>
+
+    <h2>What the widget does</h2>
+    <p>The Prickles iOS and macOS widget periodically fetches a single public JSON file from <code>jessica-he.com/prickles/status.json</code>. This file contains only Claude's current status — never anything about you. The widget does not phone home, identify you, or transmit any information about your device.</p>
+
+    <h2>What the website does</h2>
+    <p>This website uses no cookies, no third-party scripts, and no analytics. It loads a Google Font for typography, which is the only third-party request the page makes. No information about you is sent to Prickles servers (there are no Prickles servers).</p>
+
+    <h2>Where the data comes from</h2>
+    <p>Claude's status is determined by reading two public data sources on a schedule:</p>
+    <ul>
+      <li>Anthropic's public status page at <a href="https://status.anthropic.com" target="_blank" rel="noopener">status.anthropic.com</a></li>
+      <li>Public posts and comments on <a href="https://reddit.com/r/ClaudeAI" target="_blank" rel="noopener">r/ClaudeAI</a> and <a href="https://reddit.com/r/Anthropic" target="_blank" rel="noopener">r/Anthropic</a></li>
+    </ul>
+    <p>Neither of these sources involves anything about you — we never fetch anything with your identity attached.</p>
+
+    <h2>Not affiliated with Anthropic</h2>
+    <p>Prickles is an unofficial, community-built status indicator. It is not affiliated with, endorsed by, or connected to Anthropic PBC. Claude and related marks are trademarks of Anthropic. For authoritative status information, please consult <a href="https://status.anthropic.com" target="_blank" rel="noopener">Anthropic's official status page</a>.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? <a href="mailto:jessh1821@gmail.com?subject=Prickles%20privacy">Email the maintainer</a>.</p>
+
+    <footer>
+      <a href="index.html">Home</a> · <a href="terms.html">Terms</a>
+    </footer>
+  </main>
+</body>
+</html>

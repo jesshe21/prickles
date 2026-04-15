@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How's Prickles Feeling?</title>
+  <meta name="description" content="Prickles is a tiny hedgehog who feels whatever Claude feels. If Claude is down, Prickles has died. Unofficial status indicator for Anthropic's Claude.">
+
+  <meta property="og:title" content="How's Prickles Feeling?">
+  <meta property="og:description" content="A tiny hedgehog who feels whatever Claude feels. Check in on Prickles to see if Claude is okay.">
+  <meta property="og:image" content="https://jessica-he.com/prickles/assets/good.png">
+  <meta property="og:url" content="https://jessica-he.com/prickles">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/good.png">
+  <link rel="apple-touch-icon" href="assets/good.png">
+
+  <link rel="preload" href="status.json" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="history.json" as="fetch" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&family=Caprasimo&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #1F140C;
+      --bg-soft: #2A1C12;
+      --paper: #FFFCF3;
+      --paper-edge: #E8DCC2;
+      --photo-bg: #1D1310;
+      --text: #F7E6C8;
+      --text-muted: #B09680;
+      --text-dim: #826A4E;
+      --accent: #F29D3C;
+      --good: #5A8C3A;
+      --confused: #C66B1E;
+      --error: #A94328;
+      --border: rgba(242, 226, 192, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(242, 157, 60, 0.14), transparent 70%),
+        radial-gradient(ellipse 90% 60% at 50% 100%, rgba(169, 67, 40, 0.06), transparent 70%),
+        var(--bg);
+    }
+
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 56px 24px 64px;
+      text-align: center;
+    }
+
+    .question {
+      font-family: "Caprasimo", "Karla", Georgia, serif;
+      font-size: clamp(2rem, 6.2vw, 2.9rem);
+      font-weight: 400;
+      letter-spacing: -0.005em;
+      line-height: 1.12;
+      margin: 0 0 42px;
+      color: var(--text);
+    }
+
+    /* ─── Polaroid ──────────────────────────────────────────── */
+    .polaroid {
+      width: 340px;
+      max-width: 80vw;
+      margin: 0 auto 16px;
+      background: var(--paper);
+      padding: 16px 16px 22px;
+      border-radius: 4px;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 2px 4px rgba(0, 0, 0, 0.35),
+        0 22px 56px rgba(0, 0, 0, 0.55),
+        0 8px 20px rgba(0, 0, 0, 0.35),
+        0 0 80px rgba(242, 157, 60, 0.09);
+      transform: rotate(-2.5deg);
+      transition: transform 500ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      position: relative;
+      border: 1px solid var(--paper-edge);
+    }
+
+    .polaroid:hover {
+      transform: rotate(-1.2deg) translateY(-3px);
+    }
+
+    /* Tiny bit of paper texture using a subtle noisy gradient */
+    .polaroid::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 10%, rgba(255, 255, 255, 0.4), transparent 60%),
+        radial-gradient(ellipse 70% 60% at 80% 90%, rgba(226, 210, 180, 0.25), transparent 60%);
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .polaroid-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--photo-bg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .polaroid-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .polaroid-photo img.loading {
+      opacity: 0.4;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .polaroid-photo img.breathing {
+      animation: breathe 3.5s ease-in-out infinite;
+    }
+
+    .polaroid-caption {
+      font-family: "Caveat", "Karla", cursive;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 14px 0 0;
+      line-height: 1;
+      color: var(--text);
+      min-height: 2rem;
+      letter-spacing: 0.005em;
+      padding: 0 4px;
+      transition: color 300ms ease;
+    }
+
+    .state-good .polaroid-caption { color: var(--good); }
+    .state-confused .polaroid-caption { color: var(--confused); }
+    .state-error .polaroid-caption { color: var(--error); }
+
+    .stale-dot {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 10px;
+      height: 10px;
+      background: rgba(215, 188, 140, 0.65);
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 0 0 2px rgba(29, 19, 16, 0.4);
+    }
+    .stale-dot[hidden] { display: none; }
+
+    /* ─── Below-polaroid content ───────────────────────────── */
+    .below {
+      margin-top: 32px;
+    }
+
+    .detail {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin: 0 auto 10px;
+      font-weight: 500;
+      max-width: 460px;
+      line-height: 1.55;
+    }
+
+    .incident-prose {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0 auto 14px;
+      max-width: 460px;
+      line-height: 1.55;
+    }
+    .incident-prose[hidden] { display: none; }
+
+    .incident-prose em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .incident-prose a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .incident-prose a:hover { text-decoration: underline; }
+
+    .last-checked {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ─── History ──────────────────────────────────────────── */
+    section.history {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    section.history h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    ul.history-list {
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      background: var(--bg-soft);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .history-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .history-item.state-good .history-dot { background: var(--good); }
+    .history-item.state-confused .history-dot { background: var(--confused); }
+    .history-item.state-error .history-dot { background: var(--error); }
+
+    .history-item.ongoing .history-dot {
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .history-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-transform: capitalize;
+    }
+
+    .history-meta {
+      margin-left: auto;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .history-empty {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    a.history-external {
+      display: inline-block;
+      font-size: 0.88rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    a.history-external:hover { text-decoration: underline; }
+
+    /* ─── Footer ───────────────────────────────────────────── */
+    footer {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0 0 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    footer p.small {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    footer a:hover { color: var(--accent); }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+      main { padding: 40px 20px 48px; }
+      .polaroid { width: 278px; padding: 14px 14px 18px; }
+      .polaroid-caption { font-size: 1.8rem; }
+      .question { margin-bottom: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="question">How's Prickles feeling?</h1>
+
+    <figure class="polaroid" id="polaroid">
+      <div class="polaroid-photo">
+        <img
+          class="breathing loading"
+          id="hedgehog"
+          src="assets/good.png"
+          alt="Claudia the hedgehog"
+          width="600"
+          height="600"
+        >
+        <span class="stale-dot" id="stale-dot" hidden aria-label="Data may be out of date"></span>
+      </div>
+      <figcaption class="polaroid-caption" id="answer">checking…</figcaption>
+    </figure>
+
+    <div class="below">
+      <p class="detail" id="detail">One second, peeking at Claude's vibes.</p>
+      <p class="incident-prose" id="incident-prose" hidden>
+        Claude is reportedly having an issue: <em id="incident-name"></em>.
+        <a id="incident-link" target="_blank" rel="noopener">See what's up →</a>
+      </p>
+      <p class="last-checked" id="last-checked"></p>
+    </div>
+
+    <section class="history">
+      <h2>Recent moods</h2>
+      <ul class="history-list" id="history-list"></ul>
+      <p class="history-empty" id="history-empty" hidden>
+        No recent mood swings. Prickles has been stable.
+      </p>
+      <a class="history-external" href="https://status.anthropic.com/history" target="_blank" rel="noopener">
+        See Claude's full incident history →
+      </a>
+    </section>
+
+    <footer>
+      <p>
+        <a href="privacy.html">Privacy</a>
+        · <a href="terms.html">Terms</a>
+        · <a href="mailto:jessh1821@gmail.com?subject=Prickles%20feedback">Support</a>
+      </p>
+      <p class="small">
+        Prickles is an unofficial hedgehog featuring the vibes of Claude.
+        Data from
+        <a href="https://status.anthropic.com" target="_blank" rel="noopener">status.anthropic.com</a>
+        and the
+        <a href="https://reddit.com/r/ClaudeAI" target="_blank" rel="noopener">r/ClaudeAI</a>
+        /
+        <a href="https://reddit.com/r/Anthropic" target="_blank" rel="noopener">r/Anthropic</a>
+        communities. Not affiliated with Anthropic PBC. Claude is a trademark of Anthropic.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const STATE_META = {
+      good: {
+        caption: "feeling great!",
+        detail: "Claude is chilling. No complaints.",
+        image: "assets/good.png",
+      },
+      confused: {
+        caption: "…kinda weird?",
+        detail: "Reddit is being suspicious. Claude hasn't said anything official.",
+        image: "assets/confused.png",
+      },
+      error: {
+        caption: "Prickles has DIED",
+        detail: "Claude is having a real incident.",
+        image: "assets/error.png",
+      },
+    };
+
+    const STALE_MINUTES = 30;
+
+    function relativeTime(iso) {
+      if (!iso) return "";
+      const then = new Date(iso).getTime();
+      const now = Date.now();
+      const diff = Math.max(0, Math.round((now - then) / 1000));
+      if (diff < 60) return "just now";
+      if (diff < 3600) {
+        const m = Math.floor(diff / 60);
+        return `${m} ${m === 1 ? "minute" : "minutes"} ago`;
+      }
+      if (diff < 86400) {
+        const h = Math.floor(diff / 3600);
+        return `${h} ${h === 1 ? "hour" : "hours"} ago`;
+      }
+      const d = Math.floor(diff / 86400);
+      return `${d} ${d === 1 ? "day" : "days"} ago`;
+    }
+
+    function formatDurationShort(minsTotal) {
+      if (minsTotal < 60) return `${minsTotal}m`;
+      const h = Math.floor(minsTotal / 60);
+      const m = minsTotal % 60;
+      return m === 0 ? `${h}h` : `${h}h ${m}m`;
+    }
+
+    function formatHistoryMeta(fromIso, toIso) {
+      if (!fromIso) return "";
+      const from = new Date(fromIso).getTime();
+      const isOngoing = !toIso;
+      const to = toIso ? new Date(toIso).getTime() : Date.now();
+      const mins = Math.max(1, Math.round((to - from) / 60000));
+      const duration = formatDurationShort(mins);
+      const startLabel = formatDate(fromIso);
+      return isOngoing
+        ? `${startLabel} · ${duration} and counting`
+        : `${startLabel} · ${duration}`;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      return d.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      });
+    }
+
+    async function fetchJson(url) {
+      const bust = Math.floor(Date.now() / 60000);
+      const res = await fetch(`${url}?t=${bust}`, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
+      return res.json();
+    }
+
+    function applyState(status) {
+      const state = status.state || "good";
+      const meta = STATE_META[state] || STATE_META.good;
+      const polaroid = document.getElementById("polaroid");
+      const img = document.getElementById("hedgehog");
+      const answer = document.getElementById("answer");
+      const detail = document.getElementById("detail");
+      const lastChecked = document.getElementById("last-checked");
+      const staleDot = document.getElementById("stale-dot");
+
+      polaroid.className = `polaroid state-${state}`;
+      img.src = meta.image;
+      img.alt = `Claudia the hedgehog — ${state}`;
+      img.classList.remove("loading", "breathing");
+      answer.textContent = meta.caption;
+      detail.textContent = meta.detail;
+
+      const checked = status.last_checked;
+      if (checked) {
+        lastChecked.textContent = `Last checked ${relativeTime(checked)}`;
+        const ageMin = (Date.now() - new Date(checked).getTime()) / 60000;
+        staleDot.hidden = ageMin < STALE_MINUTES;
+      } else {
+        lastChecked.textContent = "";
+      }
+
+      const incidentProse = document.getElementById("incident-prose");
+      const incident = status.sources && status.sources.anthropic && status.sources.anthropic.active_incident;
+      if (state === "error" && incident && incident.name) {
+        document.getElementById("incident-name").textContent = incident.name;
+        const link = document.getElementById("incident-link");
+        link.href = incident.url || "https://status.anthropic.com";
+        incidentProse.hidden = false;
+      } else {
+        incidentProse.hidden = true;
+      }
+    }
+
+    function applyHistory(history) {
+      const list = document.getElementById("history-list");
+      const empty = document.getElementById("history-empty");
+      const entries = ((history && history.entries) || []).slice(0, 5);
+      list.innerHTML = "";
+      if (entries.length === 0) {
+        empty.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+      for (const e of entries) {
+        const li = document.createElement("li");
+        const ongoing = !e.to;
+        li.className = `history-item state-${e.state || "good"}${ongoing ? " ongoing" : ""}`;
+        li.innerHTML = `
+          <span class="history-dot" aria-hidden="true"></span>
+          <span class="history-label">${e.state}</span>
+          <span class="history-meta">${formatHistoryMeta(e.from, e.to)}</span>
+        `;
+        list.appendChild(li);
+      }
+    }
+
+    async function refresh() {
+      try {
+        const [status, history] = await Promise.all([
+          fetchJson("status.json"),
+          fetchJson("history.json").catch(() => ({ entries: [] })),
+        ]);
+        applyState(status);
+        applyHistory(history);
+      } catch (err) {
+        console.error("refresh failed:", err);
+        document.getElementById("answer").textContent = "hmm…";
+        document.getElementById("detail").textContent =
+          "Couldn't fetch the latest. We'll try again shortly.";
+        document.getElementById("hedgehog").classList.remove("loading", "breathing");
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 60 * 1000);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") refresh();
+    });
+  </script>
+</body>
+</html>

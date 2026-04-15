@@ -1,0 +1,11 @@
+{
+  "entries": [
+    {
+      "state": "error",
+      "from": "2026-04-15T17:02:38Z",
+      "to": null,
+      "reason": "anthropic_incident"
+    }
+  ],
+  "schema_version": 1
+}

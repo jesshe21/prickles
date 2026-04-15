@@ -1,0 +1,25 @@
+{
+  "state": "error",
+  "state_since": "2026-04-15T17:02:38Z",
+  "last_checked": "2026-04-15T17:30:53Z",
+  "sources": {
+    "anthropic": {
+      "status": "incident",
+      "active_incident": {
+        "id": "f00h6l76tsjs",
+        "name": "Elevated errors on Claude.ai, API, Claude Code",
+        "url": "https://stspg.io/k80mg4g9k3sf",
+        "components_degraded": [
+          "claude.ai",
+          "platform.claude.com (formerly console.anthropic.com)",
+          "Claude Code"
+        ]
+      }
+    },
+    "reddit": {
+      "triggered_by": null,
+      "skipped_because": "error_state"
+    }
+  },
+  "schema_version": 1
+}
