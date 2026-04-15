@@ -1,31 +1,24 @@
 # Prickles
 
-A tiny unofficial status indicator for Claude (Anthropic's AI assistant), featuring **Claudia the hedgehog**. Live at **[jessica-he.com/prickles](https://jessica-he.com/prickles)**.
+A tiny unofficial status indicator for Claude (Anthropic's AI assistant), featuring **Prickles the hedgehog**. Live at **[jessica-he.com/prickles](https://jessica-he.com/prickles)**.
 
-Claudia has three moods:
+Prickles has two moods:
 
 | Mood | When |
 |---|---|
-| 🦔 Good (normal) | Claude is operating normally. |
-| 🦔 Confused | Rumblings on Reddit but Anthropic hasn't declared an incident. |
-| 🦔 Rough time | Anthropic has an active incident affecting Claude. |
+| 🦔 Feeling great | Claude is operating normally. |
+| 🦔 Has DIED | Anthropic has an active incident affecting Claude, OR a Claude component is degraded. |
 
 ## How it works
 
 A GitHub Action runs every 5 minutes and executes [`scripts/update.py`](scripts/update.py), which:
 
-1. Fetches [Anthropic's official status page](https://status.anthropic.com/api/v2/summary.json). Any Claude-affecting incident → **Error** state.
-2. If Anthropic is clean, checks [r/ClaudeAI](https://reddit.com/r/ClaudeAI) and [r/Anthropic](https://reddit.com/r/Anthropic) for the most recent post matching outage-related keywords in the last hour. Fetches that post's comments and counts how many comments also match keywords. If 3+ matching comments → **Confused** state.
-3. Writes the result to [`docs/status.json`](docs/status.json) and, on state changes, appends a history entry to [`docs/history.json`](docs/history.json) (capped at 10 entries).
+1. Fetches [Anthropic's official status page](https://status.anthropic.com/api/v2/summary.json).
+2. If any Claude-affecting incident is active (`investigating`, `identified`, or `monitoring`), OR any component with "claude" in its name is in a non-operational state → **error**. Otherwise → **good**.
+3. Writes the result to [`docs/status.json`](docs/status.json) and, on state changes, appends an entry to [`docs/history.json`](docs/history.json) (capped at 10 entries).
 4. Commits and pushes the updated JSON files back to this repo.
 
-GitHub Pages serves [`docs/`](docs/) at `jessica-he.com/prickles`. The webpage reads `status.json` client-side and renders the current Claudia face.
-
-### State transition rules
-
-- **Error** is set only by Anthropic's status page, and cleared only by Anthropic (Reddit signals are ignored during recovery — Reddit always lags reality).
-- **Confused → Good** requires a 15-minute cooldown to prevent the face from flickering during borderline activity.
-- **Good → anything** applies immediately.
+GitHub Pages serves [`docs/`](docs/) at `jessica-he.com/prickles`. The webpage reads `status.json` client-side and renders the current Prickles face inside a tilted polaroid frame.
 
 ## Architecture
 
@@ -39,7 +32,7 @@ jesshe21/prickles/                  (this repo)
 │   ├── terms.html
 │   ├── status.json                — auto-updated
 │   ├── history.json               — auto-updated
-│   └── assets/                    — Claudia PNGs
+│   └── assets/                    — Prickles PNGs
 └── ios/                           — Xcode project (coming soon)
 ```
 

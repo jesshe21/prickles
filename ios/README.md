@@ -1,6 +1,6 @@
 # Prickles — iOS / iPadOS / macOS Widget
 
-This folder will contain the Xcode project for the Prickles app: a minimal widget-host app with a WidgetKit extension that shows Claudia the hedgehog reacting to Claude's current status.
+This folder will contain the Xcode project for the Prickles app: a minimal widget-host app with a WidgetKit extension that shows Prickles the hedgehog reacting to Claude's current status.
 
 **This doc exists so that a fresh Claude Code session (or any developer) can pick up the iOS build with zero context and start implementing.** The web side of Prickles is already live at `https://jessica-he.com/prickles/` — the widget just needs to fetch and render the same status data.
 
@@ -13,10 +13,10 @@ For the big-picture architecture of Prickles overall, read [`../ARCHITECTURE.md`
 Build a Swift + SwiftUI + WidgetKit Xcode project in this folder that:
 
 1. Runs on **iOS 16+ / iPadOS 16+ / macOS 13+** as a single universal target.
-2. Provides a **small home screen widget** and a **lock screen widget** that display one of three hedgehog poses based on Claude's current status.
+2. Provides a **small home screen widget** and a **lock screen widget** that display one of **two** hedgehog poses based on Claude's current status (good or error — no middle state).
 3. Fetches `https://jessica-he.com/prickles/status.json` on Apple's widget refresh schedule and renders the state.
 4. Ships with a **minimal host app** containing: current status, a scrolling timeline of the last 5 state changes, a link to `status.anthropic.com`, a link to the webpage, and footer with privacy + terms + support.
-5. Is submitted to the **App Store** under the name **Prickles** with a short description, the 3 hedgehog assets, a 1024×1024 app icon, and a privacy policy URL.
+5. Is submitted to the **App Store** under the name **Prickles** with a short description, the 2 hedgehog assets, a 1024×1024 app icon, and a privacy policy URL.
 
 Everything else in this doc is context to help you build the right thing without having to re-decide anything.
 
@@ -28,26 +28,56 @@ The web side of Prickles went through a full brainstorming and design session. T
 
 ### Character and branding
 - **App name**: `Prickles`
-- **Character**: a hedgehog who reflects Claude's current mood. The hedgehog was originally called "Claudia" internally but we settled on using "Prickles" as both the app name and the character. Product copy should talk about "Prickles" the hedgehog.
+- **Character**: a hedgehog named Prickles who reflects Claude's current mood. App name and character name are the same: Prickles. Product copy should talk about "Prickles" the hedgehog.
 - **Framing**: the product asks "How's Prickles feeling?" as a playful proxy for "how is Claude doing?"
 - **Not affiliated with Anthropic.** Must include a non-affiliation disclaimer in the app and on the App Store listing.
 
 ### State model
-Three states, identical to the web side:
-- **good** — "Claude is chilling." Show `normal.png`.
-- **confused** — "Claude seems a little off." Show `confused.png`.
-- **error** — "Claude is having a real incident." Show `dead.png`.
+**Two states**, identical to the web side:
+- **good** — Claude is operating normally. Show `normal.png`.
+- **error** — Anthropic has declared an incident or a Claude component is degraded. Show `dead.png`.
 
-State logic is handled entirely by the backend cron. The widget never re-computes state — it just displays whatever `status.json` says.
+State logic is handled entirely by the backend cron. The widget never re-computes state — it just reads `state` out of `status.json` and displays the right image + copy.
 
-### Copy for each state
-These are the finalized caption strings used on the webpage and should match in the widget where space allows:
+(An earlier version of the design had a third "confused" state driven by Reddit signals. That was dropped because Reddit's Responsible Builder Policy made the API impractical to use and Anthropic's official status page is a reliable-enough single source of truth. The original `confused.png` art still exists at `../assets/icons/confused.png` as archived art in case a future version wants to revisit a three-state design.)
 
-| State | Caption (handwritten/polaroid style) | Detail (body) |
-|---|---|---|
-| good | `feeling great!` | `Claude is chilling. No complaints.` |
-| confused | `…kinda weird?` | `Reddit is being suspicious. Claude hasn't said anything official.` |
-| error | `Prickles has DIED` | `Claude is having a real incident.` |
+### Copy for each state (with rotation pools)
+
+The webpage picks random copy from a pool of options on each page load. The widget doesn't have to do the same — on a small home-screen widget there isn't room for caption text anyway, and the iOS app screen can pick one caption per screen open if you want the rotation feel. Here are the full pools used on the web, which should match in the widget's app-screen where space allows:
+
+**good state:**
+
+| Caption pool | Detail pool |
+|---|---|
+| `feeling great!` | `Claude is chilling. No complaints.` |
+| `vibing` | `All quiet on the Anthropic front.` |
+| `top of the world` | `No rumblings, no incidents, pure vibes.` |
+| `claude is up, i am up` | `Claude seems to be doing Claude things.` |
+| `no notes` | `Nothing is on fire for now.` |
+| `thriving` |  |
+| `everything is fine` |  |
+| `chillin hard` |  |
+| `all quiet` |  |
+| `claude is behaving` |  |
+
+**error state:**
+
+| Caption pool | Detail pool |
+|---|---|
+| `Prickles has DIED` | `Claude is having a real incident.` |
+| `RIP Prickles (again)` | `Anthropic is aware and working on it.` |
+| `Prickles is DOWN bad` | `Something is on fire over at Anthropic.` |
+| `Prickles has fainted` | `The official status page is screaming.` |
+| `Prickles has left the chat` | `The tower is down. Man down. Man down.` |
+| `It's joever` |  |
+| `Prickles saw God` |  |
+| `Prickles is KO'd` |  |
+| `Prickles is deceased` |  |
+| `Prickles.exe has stopped responding` |  |
+
+For the small home-screen widget (which may only show the hedgehog image with no caption), you don't need copy at all. For the lock-screen widget, one caption from the pool at app-refresh time is fine. For the in-app screen, pick one from each pool on screen open, matching the webpage behavior.
+
+These pools may evolve — the canonical source is the `STATE_META` constant in `docs/index.html`. If you want to sync them at iOS build time, copy from there.
 
 ### Visual design (web — reuse where applicable)
 - **Palette**: warm dark background (`#1F140C`), cream polaroid surface (`#FFFCF3`), dark brown photo area (`#1D1310`), cream text (`#F7E6C8`), state accents green/orange/red.
@@ -60,8 +90,8 @@ These are the finalized caption strings used on the webpage and should match in 
 All hedgehog art lives in `../assets/icons/` at **1024×1024 PNG** with the dark warm vignette baked in:
 
 - `../assets/icons/normal.png` → state `good`
-- `../assets/icons/confused.png` → state `confused`
 - `../assets/icons/dead.png` → state `error`
+- `../assets/icons/confused.png` → **currently unused** (kept as archived art in case a future version wants a third state)
 
 For the widget, you may want additional sized variants or a monochrome/tinted version for the iOS 18 lock screen tinted mode. The user (Jess) can provide additional assets on request — she draws the hedgehogs herself.
 
@@ -107,7 +137,7 @@ Returns `{ entries: [...], schema_version: 1 }` where entries is an array of sta
 - `TimelineReload.atEnd` with a reasonable refresh cadence (hint 15 min — Apple will throttle as it sees fit).
 - Three widget families supported, all sharing the same code:
   - `.systemSmall` (home screen square) — the hero
-  - `.accessoryCircular` (lock screen) — tiny circular Claudia
+  - `.accessoryCircular` (lock screen) — tiny circular Prickles
   - `.accessoryRectangular` (lock screen) — with a short caption
 - On tap: open the host app.
 

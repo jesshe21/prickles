@@ -1,58 +1,39 @@
 # Prickles — Architecture
 
-This document explains how Prickles works end-to-end: the data sources, the update logic, the state model, the webpage, and the deployment pipeline. Anyone cloning this repo should be able to read this file and understand what the system does and why.
+This document explains how Prickles works end-to-end: the data source, the update logic, the state model, the webpage, and the deployment pipeline. Anyone cloning this repo should be able to read this file and understand what the system does and why.
 
 For a higher-level "what is this" overview, see [`README.md`](README.md). For notes specifically about building the iOS/Mac widget on top of this data, see [`ios/README.md`](ios/README.md).
 
 ## One-line summary
 
-Prickles is a tiny unofficial status indicator for Anthropic's Claude. A GitHub Actions cron polls Claude's official status page (and optionally Reddit) every 5 minutes, writes the current state to a JSON file, commits it back to this repo, and a static webpage served by GitHub Pages renders a cute hedgehog whose mood reflects whatever Claude is going through.
+Prickles is a tiny unofficial status indicator for Anthropic's Claude. A GitHub Actions cron polls Claude's official status page every 5 minutes, writes the current state to a JSON file, commits it back to this repo, and a static webpage served by GitHub Pages renders a cute hedgehog — **Prickles** — whose mood reflects whatever Claude is going through.
 
-## The three states
+## The two states
 
-Prickles has exactly three possible moods:
+Prickles has exactly two moods:
 
-| State | Meaning | Trigger |
+| State | Meaning | Webpage caption examples |
 |---|---|---|
-| **good** | Claude is operating normally. | Default when no other condition is met. |
-| **confused** | Users on Reddit seem to be hitting issues, but Anthropic hasn't declared an incident yet. Early-warning indicator. | A matching Reddit post from the last hour exists *and* has 3+ comments (also from the last hour) that also match outage keywords. |
-| **error** | Anthropic has officially declared a Claude-affecting incident. | Anthropic's status API reports an active incident in one of `investigating`, `identified`, `monitoring`, or any Claude-named component in a non-operational state. |
+| **good** | Claude is operating normally — no active incidents, no degraded components. | "feeling great!", "vibing", "no notes", "claude is up, i am up" |
+| **error** | Anthropic has officially declared a Claude-affecting incident, or a Claude component is in a non-operational state. | "Prickles has DIED", "RIP Prickles (again)", "Prickles has fainted", "It's joever" |
 
-**Asymmetry is intentional**:
-- Only Anthropic can trigger Error. Only Anthropic can clear Error. Reddit signals are ignored during recovery because Reddit always lags reality.
-- A 15-minute cooldown prevents Confused → Good transitions when activity briefly dips, to avoid flickering during borderline incidents.
+That's it. Two states. Transitions are immediate in both directions. No middle state, no cooldown, no tunable thresholds — just "is Anthropic reporting something wrong" or not.
 
-See [`scripts/update.py`](scripts/update.py) function `decide_state()` for the exact transition table.
+The specific captions shown to visitors are picked at random from a pool defined in `docs/index.html`. On every fresh page load, the visitor sees a slightly different Prickles. Edit the arrays in `index.html` to add, remove, or tweak copy anytime — the site picks from whatever is in the pool.
 
-## Data sources
+## Data source
 
-### 1. Anthropic status API (authoritative)
+### Anthropic status API (authoritative and only)
 
 - URL: `https://status.anthropic.com/api/v2/summary.json`
 - Public, no authentication required.
 - We look at two fields:
-  - `incidents[*].status` — any incident in `investigating`, `identified`, or `monitoring` triggers Error.
-  - `components[*]` — any component with `"claude"` in its name whose `status` is not `operational` also triggers Error (catches degraded states even without a declared incident).
+  - `incidents[*].status` — any incident whose status is `investigating`, `identified`, or `monitoring` triggers error.
+  - `components[*]` — any component with `"claude"` in its name whose `status` is not `operational` also triggers error (catches degraded states even without a declared incident).
 
-### 2. Reddit (early-warning, best-effort)
+If neither of those conditions holds, Prickles is in the good state.
 
-- URLs: `https://www.reddit.com/r/ClaudeAI/new.json?limit=25` and the same for `r/Anthropic`.
-- Public unauthenticated access blocks requests from most cloud IPs (GitHub Actions gets 403'd). **Reddit OAuth is required in production** to bypass this. See [Reddit authentication](#reddit-authentication) below.
-- For each subreddit, the script finds the most recent post from the last hour whose title or body matches any outage keyword, then fetches that post's comments and counts how many comments (also from the last hour) match keywords. If any subreddit shows 3+ matching comments on a matching recent post, Confused is triggered.
-
-### Keyword list
-
-Defined in [`scripts/update.py`](scripts/update.py):
-
-```python
-KEYWORDS = [
-    "down", "broken", "error", "errors", "500", "slow", "overloaded",
-    "not working", "capacity", "unavailable", "lagging", "dead",
-    "timeout", "timing out", "rate limit",
-]
-```
-
-Matching is case-insensitive with word boundaries.
+**There is no secondary signal.** Earlier designs considered Reddit, Hacker News, and an API canary probe as leading indicators, but each brought meaningful downsides (Reddit's new Responsible Builder Policy, paywalled X API, weak canary signal, etc.). In practice Anthropic declares real incidents within a few minutes of them starting, and running the whole system off one authoritative source keeps it simple, reliable, and dependency-free.
 
 ## Data flow
 
@@ -64,31 +45,30 @@ Matching is case-insensitive with word boundaries.
                       │ runs
                       ▼
 ┌──────────────────────────────────────────────────────┐
-│  scripts/update.py                                   │
+│  scripts/update.py (Python stdlib only)              │
 │                                                      │
 │  1. Fetch Anthropic summary.json                     │
-│  2. If Anthropic reports incident → state = error    │
-│  3. Otherwise fetch Reddit (r/ClaudeAI, r/Anthropic) │
-│  4. Keyword-match posts + comments → state decision  │
-│  5. Read previous state from docs/status.json        │
-│  6. Apply transition rules (cooldown, Anthropic-only │
-│     recovery from error)                             │
-│  7. Write new state to docs/status.json              │
-│  8. If state changed, append to docs/history.json    │
-│     (trimmed to last 10 entries)                     │
+│  2. Decide state:                                    │
+│       error if any active incident or degraded       │
+│       Claude component; otherwise good               │
+│  3. Read previous state from docs/status.json        │
+│  4. Write new state to docs/status.json              │
+│  5. If state changed, append entry to                │
+│     docs/history.json (trimmed to last 10)           │
 └─────────────────────┬────────────────────────────────┘
                       │ git commit + git push
                       ▼
 ┌──────────────────────────────────────────────────────┐
-│  docs/status.json and docs/history.json in main      │
+│  docs/status.json and docs/history.json on main      │
 └─────────────────────┬────────────────────────────────┘
                       │ GitHub Pages auto-rebuilds /docs
                       ▼
 ┌──────────────────────────────────────────────────────┐
 │  https://jessica-he.com/prickles/                    │
 │                                                      │
-│  - docs/index.html (webpage, fetches status client-  │
-│    side every 60s and on tab focus)                  │
+│  - docs/index.html (webpage, fetches status every    │
+│    60s and on tab focus, picks random caption from   │
+│    state pools on state change)                      │
 │  - docs/status.json (public JSON, consumed by page   │
 │    and future iOS widget)                            │
 │  - docs/history.json (last ~10 state changes)        │
@@ -101,9 +81,9 @@ Matching is case-insensitive with word boundaries.
 
 ```jsonc
 {
-  "state": "good" | "confused" | "error",
+  "state": "good" | "error",
   "state_since": "2026-04-15T17:02:38Z",  // when we entered the current state
-  "last_checked": "2026-04-15T18:05:26Z", // when the cron last ran
+  "last_checked": "2026-04-15T18:34:56Z", // when the cron last ran
   "sources": {
     "anthropic": {
       "status": "operational" | "incident" | "degraded" | "unknown",
@@ -113,15 +93,6 @@ Matching is case-insensitive with word boundaries.
         "url": "https://stspg.io/...",
         "components_degraded": ["claude.ai", "Claude Code"]
       }
-    },
-    "reddit": {
-      "triggered_by": null | {
-        "subreddit": "ClaudeAI",
-        "post_title": "...",
-        "post_url": "https://reddit.com/...",
-        "matching_comments": 5
-      },
-      "skipped_because": null | "error_state"
     }
   },
   "schema_version": 1
@@ -137,7 +108,7 @@ Matching is case-insensitive with word boundaries.
       "state": "error",
       "from": "2026-04-15T17:02:38Z",
       "to": "2026-04-15T18:05:26Z",  // null if this state is currently active
-      "reason": "anthropic_incident" | "reddit_rumblings" | "operational"
+      "reason": "anthropic_incident" | "operational"
     }
     // up to 10 entries, newest first
   ],
@@ -156,9 +127,9 @@ prickles/
 │       └── update.yml          GitHub Actions cron (every 5 min)
 ├── assets/
 │   └── icons/                  Original 1024×1024 hedgehog PNGs
-│       ├── normal.png          Good state (happy Claudia)
-│       ├── confused.png        Confused state (puzzled Claudia)
-│       └── dead.png            Error state (Claudia + ghost)
+│       ├── normal.png          good state
+│       ├── dead.png            error state
+│       └── confused.png        (unused — kept as archived art)
 ├── docs/                       Served by GitHub Pages at /prickles
 │   ├── .nojekyll               Disables Jekyll processing
 │   ├── index.html              The webpage
@@ -168,7 +139,6 @@ prickles/
 │   ├── history.json            Recent state changes (auto-updated)
 │   └── assets/                 Web-optimized 600×600 PNGs
 │       ├── good.png
-│       ├── confused.png
 │       └── error.png
 ├── ios/                        iOS/Mac Xcode project (to be built)
 ├── scripts/
@@ -188,7 +158,32 @@ The webpage at `docs/index.html` is a single static file with inline CSS and JS 
 3. Re-fetch every 60 seconds via `setInterval`, and also on `visibilitychange` when the tab becomes visible again.
 4. All fetches use a minute-granularity cache-busting query param so repeated views within the same minute don't hammer the network but subsequent minutes always get fresh data.
 
-The design uses a dark warm palette with a tilted cream polaroid as the hero element. Fonts: Karla (body), Caveat (polaroid caption), Caprasimo (the "How's Prickles feeling?" question). The polaroid caption itself is state-colored.
+### Copy & image rotation
+
+Each state has **pools** of captions, detail lines, and images, defined near the top of the `<script>` block in `index.html`:
+
+```js
+const STATE_META = {
+  good: {
+    captions: [ "feeling great!", "vibing", "top of the world", ... ],
+    details:  [ "Claude is chilling. No complaints.", ... ],
+    images:   [ "assets/good.png" ],
+  },
+  error: {
+    captions: [ "Prickles has DIED", "RIP Prickles (again)", ... ],
+    details:  [ "Claude is having a real incident.", ... ],
+    images:   [ "assets/error.png" ],
+  },
+};
+```
+
+On every page load, the webpage picks one random caption, detail, and image from the relevant pool and renders it. The pick does **not** change on the same page during 60-second `setInterval` refreshes — it only re-rolls when the state itself changes (e.g., good → error → good would pick fresh copy on each transition). This keeps the experience visually stable between automatic refreshes but gives every page load its own little personality.
+
+To add new variants, just edit the arrays in `index.html` and ship. No build step, no schema migration. To add new images, drop the PNG into `docs/assets/` and add the filename to the appropriate `images` array.
+
+### Design notes
+
+The webpage uses a dark warm palette with a tilted cream polaroid as the hero element. Fonts: Karla (body), Caveat (polaroid caption), Caprasimo (the "How's Prickles feeling?" question). The polaroid caption is state-colored (muted green for good, brick red for error).
 
 ## Deployment
 
@@ -211,33 +206,13 @@ Permissions: `contents: write` (to commit the updated JSON files back to the rep
 - Scheduled workflows on brand-new public repos have a *warm-up delay* of 30–60 minutes before the cron starts firing reliably. After the initial warm-up, runs generally happen on schedule (though GitHub can delay scheduled runs during high load).
 - Scheduled workflows are auto-disabled after 60 days of no repository activity. Since every cron run commits the updated `status.json`, the repo has continuous activity and this never triggers.
 
-## Reddit authentication
-
-Reddit blocks unauthenticated API requests from most cloud IP ranges (including GitHub Actions), returning HTTP 403. To get reliable Reddit data in the cron, we use Reddit OAuth in the "client credentials" flow (app-only, no user context needed).
-
-**Credentials are stored as GitHub Actions secrets:**
-- `REDDIT_CLIENT_ID`
-- `REDDIT_CLIENT_SECRET`
-
-The workflow passes these as environment variables to `update.py`. The script:
-
-1. Reads both env vars at start.
-2. If both are set: POST to `https://www.reddit.com/api/v1/access_token` with HTTP Basic auth using the client credentials and `grant_type=client_credentials`. Get back a bearer token. Use `oauth.reddit.com` endpoints with `Authorization: Bearer <token>` on subsequent requests.
-3. If either is unset (e.g., running locally on a developer's machine): fall back to unauthenticated `www.reddit.com` endpoints, which work fine from residential IPs.
-
-This means:
-- **Production**: authenticated, Reddit works.
-- **Local development**: unauthenticated fallback, Reddit still works from a home IP.
-
-Credentials are never committed to the repo. To rotate: regenerate the Reddit app secret at `https://www.reddit.com/prefs/apps` and re-run `gh secret set REDDIT_CLIENT_SECRET --repo jesshe21/prickles`.
-
 ## Security posture
 
 This repo is fully public and contains no secrets:
-- Anthropic's status API requires no auth.
-- Reddit credentials live in GitHub Actions secrets (encrypted at rest, never in the repo source).
+- Anthropic's status API requires no authentication.
 - The webpage collects no user data — no analytics, no cookies, no trackers, no third-party scripts beyond Google Fonts.
 - The GitHub Action uses the auto-provided `GITHUB_TOKEN`, scoped to this repo only.
+- **No API keys, no OAuth, no secrets of any kind are stored anywhere** in this repo or in GitHub Actions secrets. There is genuinely nothing to leak.
 
 See [`docs/privacy.html`](docs/privacy.html) for the user-facing privacy policy.
 
@@ -258,10 +233,10 @@ cd docs && python3 -m http.server 8765
 
 ## Known limitations
 
-- **Reddit is blocked from cloud IPs without OAuth.** Handled via credentials (see above).
 - **GitHub Actions cron has warm-up and occasional delays.** Not a bug — worst case, the state is 5–15 minutes behind reality. Acceptable for an ambient status indicator.
-- **Widget refresh latency on iOS is 15–30 minutes minimum.** Apple's widget refresh budget is out of our control. The webpage refreshes every 60s, the widget less often.
-- **Cloudflare + GitHub Pages caching.** The default `Cache-Control: max-age=600` header from GitHub Pages can cause up to 10 minutes of stale JSON at the browser level. The webpage's client-side cache-busting query param mitigates this. For the future iOS widget, the widget's own refresh logic handles staleness via Apple's timeline mechanism.
+- **Lag behind real incidents.** The only signal source is Anthropic's official status page, which has *human* latency (someone has to declare the incident). Prickles will show "good" during the first few minutes of a real outage, until Anthropic pushes the status update. This is a deliberate tradeoff for simplicity and reliability over early warning.
+- **Widget refresh latency on iOS will be 15–30 minutes minimum** (once built). Apple's widget refresh budget is out of our control. The webpage refreshes every 60s; the widget will refresh less often.
+- **Cloudflare + GitHub Pages caching.** The default `Cache-Control: max-age=600` header from GitHub Pages can cause up to 10 minutes of stale JSON at the browser level. The webpage's client-side cache-busting query param mitigates this.
 
 ## Not affiliated with Anthropic
 

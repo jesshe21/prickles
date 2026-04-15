@@ -35,7 +35,6 @@
       --text-dim: #826A4E;
       --accent: #F29D3C;
       --good: #5A8C3A;
-      --confused: #C66B1E;
       --error: #A94328;
       --border: rgba(242, 226, 192, 0.08);
     }
@@ -159,7 +158,6 @@
     }
 
     .state-good .polaroid-caption { color: var(--good); }
-    .state-confused .polaroid-caption { color: var(--confused); }
     .state-error .polaroid-caption { color: var(--error); }
 
     .stale-dot {
@@ -262,7 +260,6 @@
       flex-shrink: 0;
     }
     .history-item.state-good .history-dot { background: var(--good); }
-    .history-item.state-confused .history-dot { background: var(--confused); }
     .history-item.state-error .history-dot { background: var(--error); }
 
     .history-item.ongoing .history-dot {
@@ -353,7 +350,7 @@
           class="breathing loading"
           id="hedgehog"
           src="assets/good.png"
-          alt="Claudia the hedgehog"
+          alt="Prickles the hedgehog"
           width="600"
           height="600"
         >
@@ -391,34 +388,76 @@
       <p class="small">
         Prickles is an unofficial hedgehog featuring the vibes of Claude.
         Data from
-        <a href="https://status.anthropic.com" target="_blank" rel="noopener">status.anthropic.com</a>
-        and the
-        <a href="https://reddit.com/r/ClaudeAI" target="_blank" rel="noopener">r/ClaudeAI</a>
-        /
-        <a href="https://reddit.com/r/Anthropic" target="_blank" rel="noopener">r/Anthropic</a>
-        communities. Not affiliated with Anthropic PBC. Claude is a trademark of Anthropic.
+        <a href="https://status.anthropic.com" target="_blank" rel="noopener">status.anthropic.com</a>.
+        Not affiliated with Anthropic PBC. Claude is a trademark of Anthropic.
       </p>
     </footer>
   </main>
 
   <script>
+    // Each state has pools of copy + images. On state change (including
+    // the first render of a page load), we pick one of each at random.
+    // Edit these arrays anytime — just add or remove strings and the site
+    // picks from whatever is in the pool.
     const STATE_META = {
       good: {
-        caption: "feeling great!",
-        detail: "Claude is chilling. No complaints.",
-        image: "assets/good.png",
-      },
-      confused: {
-        caption: "…kinda weird?",
-        detail: "Reddit is being suspicious. Claude hasn't said anything official.",
-        image: "assets/confused.png",
+        captions: [
+          "feeling great!",
+          "vibing",
+          "top of the world",
+          "claude is up, i am up",
+          "no notes",
+          "thriving",
+          "everything is fine",
+          "chillin hard",
+          "all quiet",
+          "claude is behaving",
+        ],
+        details: [
+          "Claude is chilling. No complaints.",
+          "All quiet on the Anthropic front.",
+          "No rumblings, no incidents, pure vibes.",
+          "Claude seems to be doing Claude things.",
+          "Nothing is on fire for now.",
+        ],
+        images: [
+          "assets/good.png",
+        ],
       },
       error: {
-        caption: "Prickles has DIED",
-        detail: "Claude is having a real incident.",
-        image: "assets/error.png",
+        captions: [
+          "Prickles has DIED",
+          "RIP Prickles (again)",
+          "Prickles is DOWN bad",
+          "Prickles has fainted",
+          "Prickles has left the chat",
+          "It's joever",
+          "Prickles saw God",
+          "Prickles is KO'd",
+          "Prickles is deceased",
+          "Prickles.exe has stopped responding",
+        ],
+        details: [
+          "Claude is having a real incident.",
+          "Anthropic is aware and working on it.",
+          "Something is on fire over at Anthropic.",
+          "The official status page is screaming.",
+          "The tower is down. Man down. Man down.",
+        ],
+        images: [
+          "assets/error.png",
+        ],
       },
     };
+
+    function pickRandom(arr) {
+      if (!arr || !arr.length) return null;
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    // Track the currently-rendered state so we only re-pick random copy
+    // when the state actually changes, not on every 60s refresh.
+    let currentRenderedState = null;
 
     const STALE_MINUTES = 30;
 
@@ -489,11 +528,20 @@
       const staleDot = document.getElementById("stale-dot");
 
       polaroid.className = `polaroid state-${state}`;
-      img.src = meta.image;
-      img.alt = `Claudia the hedgehog — ${state}`;
       img.classList.remove("loading", "breathing");
-      answer.textContent = meta.caption;
-      detail.textContent = meta.detail;
+
+      // Only re-roll the random copy/image when the state actually changes
+      // (first render is a state change from null → current state).
+      if (state !== currentRenderedState) {
+        currentRenderedState = state;
+        const caption = pickRandom(meta.captions);
+        const detailText = pickRandom(meta.details);
+        const imageSrc = pickRandom(meta.images);
+        answer.textContent = caption;
+        detail.textContent = detailText;
+        if (imageSrc) img.src = imageSrc;
+        img.alt = `Prickles the hedgehog — ${state}`;
+      }
 
       const checked = status.last_checked;
       if (checked) {

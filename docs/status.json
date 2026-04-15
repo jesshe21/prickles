@@ -1,14 +1,11 @@
 {
   "state": "good",
   "state_since": "2026-04-15T18:05:26Z",
-  "last_checked": "2026-04-15T18:44:08Z",
+  "last_checked": "2026-04-15T18:59:17Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "active_incident": null
-    },
-    "reddit": {
-      "triggered_by": null
     }
   },
   "schema_version": 1
