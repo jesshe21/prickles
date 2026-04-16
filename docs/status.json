@@ -1,11 +1,18 @@
 {
-  "state": "good",
-  "state_since": "2026-04-16T08:52:02Z",
-  "last_checked": "2026-04-16T18:17:44Z",
+  "state": "error",
+  "state_since": "2026-04-16T19:39:38Z",
+  "last_checked": "2026-04-16T19:39:38Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "qj05p69fff9h",
+        "name": "Claude Cowork not starting for some users",
+        "url": "https://stspg.io/zv6xsc3wm28c",
+        "components_degraded": [
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
