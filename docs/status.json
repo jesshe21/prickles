@@ -1,11 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-04-15T18:05:26Z",
-  "last_checked": "2026-04-16T05:17:01Z",
+  "state": "error",
+  "state_since": "2026-04-16T07:04:23Z",
+  "last_checked": "2026-04-16T07:04:23Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "7jbzthbc1dwr",
+        "name": "Opus 4.6 elevated rate of errors",
+        "url": "https://stspg.io/90n2vmmkj1df",
+        "components_degraded": [
+          "claude.ai",
+          "platform.claude.com (formerly console.anthropic.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
