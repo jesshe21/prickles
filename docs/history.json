@@ -1,9 +1,15 @@
 {
   "entries": [
     {
+      "state": "good",
+      "from": "2026-04-16T21:59:26Z",
+      "to": null,
+      "reason": "operational"
+    },
+    {
       "state": "error",
       "from": "2026-04-16T19:39:38Z",
-      "to": null,
+      "to": "2026-04-16T21:59:26Z",
       "reason": "anthropic_incident"
     },
     {
