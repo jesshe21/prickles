@@ -1,11 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-04-16T21:59:26Z",
-  "last_checked": "2026-04-17T18:30:04Z",
+  "state": "error",
+  "state_since": "2026-04-17T19:39:45Z",
+  "last_checked": "2026-04-17T19:39:45Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "4t4qg3vkrz6z",
+        "name": "Errors uploading documents to Google Drive in Claude.ai",
+        "url": "https://stspg.io/1085mzzhwf2v",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
