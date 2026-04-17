@@ -1,0 +1,111 @@
+name: Prickles
+options:
+  bundleIdPrefix: com.jessica-he
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+  developmentLanguage: en
+  xcodeVersion: "15.0"
+
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: "NO"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    SUPPORTS_MACCATALYST: "NO"
+    SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: "YES"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ENABLE_PREVIEWS: "YES"
+    SWIFT_EMIT_LOC_STRINGS: "YES"
+    GENERATE_INFOPLIST_FILE: "NO"
+
+fileGroups:
+  - project.yml
+  - README.md
+
+targets:
+
+  Prickles:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Prickles/Sources
+      - path: Prickles/Resources/Assets.xcassets
+      - path: Shared/Sources
+      - path: Shared/Resources/Shared.xcassets
+      - path: Shared/Resources/Fonts
+    dependencies:
+      - target: PricklesWidget
+    info:
+      path: Prickles/Info.plist
+      properties:
+        CFBundleDisplayName: Prickles
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.utilities
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIAppFonts:
+          - Caveat.ttf
+          - Caprasimo-Regular.ttf
+          - Karla.ttf
+    entitlements:
+      path: Prickles/Prickles.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.com.jessica-he.prickles
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jessica-he.prickles
+        PRODUCT_NAME: Prickles
+        INFOPLIST_FILE: Prickles/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_ENTITLEMENTS: Prickles/Prickles.entitlements
+
+  PricklesWidget:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: PricklesWidget/Sources
+      - path: PricklesWidget/Resources/Assets.xcassets
+      - path: Shared/Sources
+      - path: Shared/Resources/Shared.xcassets
+      - path: Shared/Resources/Fonts
+    info:
+      path: PricklesWidget/Info.plist
+      properties:
+        CFBundleDisplayName: Prickles
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIAppFonts:
+          - Caveat.ttf
+          - Caprasimo-Regular.ttf
+          - Karla.ttf
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: PricklesWidget/PricklesWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.com.jessica-he.prickles
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jessica-he.prickles.PricklesWidget
+        PRODUCT_NAME: PricklesWidget
+        INFOPLIST_FILE: PricklesWidget/Info.plist
+        CODE_SIGN_ENTITLEMENTS: PricklesWidget/PricklesWidget.entitlements
+        SKIP_INSTALL: "YES"
