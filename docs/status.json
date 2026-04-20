@@ -1,23 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-04-20T06:31:58Z",
-  "last_checked": "2026-04-20T06:31:58Z",
+  "state": "good",
+  "state_since": "2026-04-20T08:36:50Z",
+  "last_checked": "2026-04-20T08:36:50Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "8rg3l7v56ngc",
-        "name": "Claude Sonnet 4.5 error spike",
-        "url": "https://stspg.io/9xlxt35zjzcp",
-        "components_degraded": [
-          "claude.ai",
-          "platform.claude.com (formerly console.anthropic.com)",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork",
-          "Claude for Government"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
