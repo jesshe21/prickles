@@ -1,16 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-04-19T22:58:35Z",
-  "last_checked": "2026-04-19T23:40:57Z",
+  "state": "good",
+  "state_since": "2026-04-20T01:09:47Z",
+  "last_checked": "2026-04-20T01:09:47Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "34yy5hskyw2v",
-        "name": "Elevated errors on Opus 4.6",
-        "url": "https://stspg.io/qlwclyv64k56",
-        "components_degraded": []
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
