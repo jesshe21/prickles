@@ -1,9 +1,15 @@
 {
   "entries": [
     {
+      "state": "error",
+      "from": "2026-04-24T17:14:22Z",
+      "to": null,
+      "reason": "anthropic_incident"
+    },
+    {
       "state": "good",
       "from": "2026-04-24T11:20:20Z",
-      "to": null,
+      "to": "2026-04-24T17:14:22Z",
       "reason": "operational"
     },
     {
@@ -53,12 +59,6 @@
       "from": "2026-04-16T21:59:26Z",
       "to": "2026-04-17T19:39:45Z",
       "reason": "operational"
-    },
-    {
-      "state": "error",
-      "from": "2026-04-16T19:39:38Z",
-      "to": "2026-04-16T21:59:26Z",
-      "reason": "anthropic_incident"
     }
   ],
   "schema_version": 1
