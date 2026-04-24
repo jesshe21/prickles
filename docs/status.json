@@ -1,18 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-04-24T17:14:22Z",
-  "last_checked": "2026-04-24T17:14:22Z",
+  "state": "good",
+  "state_since": "2026-04-24T18:00:38Z",
+  "last_checked": "2026-04-24T18:00:38Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "s0lttkq5mmt2",
-        "name": "Issues with sign-ups on platform.claude.com",
-        "url": "https://stspg.io/6f9452dhsjt6",
-        "components_degraded": [
-          "platform.claude.com (formerly console.anthropic.com)"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
