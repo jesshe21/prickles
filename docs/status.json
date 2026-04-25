@@ -1,16 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-04-25T19:01:25Z",
-  "last_checked": "2026-04-25T19:01:25Z",
+  "state": "good",
+  "state_since": "2026-04-25T19:49:23Z",
+  "last_checked": "2026-04-25T19:49:23Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "c3km369dp85h",
-        "name": "Investigated elevated errors and slower responses on claude.ai",
-        "url": "https://stspg.io/32rqp9dyk7ry",
-        "components_degraded": []
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
