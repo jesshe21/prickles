@@ -1,11 +1,16 @@
 {
-  "state": "good",
-  "state_since": "2026-04-25T19:49:23Z",
-  "last_checked": "2026-04-27T12:12:31Z",
+  "state": "error",
+  "state_since": "2026-04-27T14:26:56Z",
+  "last_checked": "2026-04-27T14:26:56Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "mct55f8gxb7k",
+        "name": "Elevated billing related errors on Claude.ai",
+        "url": "https://stspg.io/rfmsz6xdfs5c",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
