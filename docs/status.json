@@ -1,11 +1,21 @@
 {
-  "state": "good",
-  "state_since": "2026-04-27T16:07:24Z",
-  "last_checked": "2026-04-28T17:11:58Z",
+  "state": "error",
+  "state_since": "2026-04-28T18:51:49Z",
+  "last_checked": "2026-04-28T18:51:49Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "9l93x2ht4s5w",
+        "name": "Claude.ai unavailable and elevated errors on the API",
+        "url": "https://stspg.io/mz37pbn6yt3w",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
