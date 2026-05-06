@@ -1,11 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-05-06T17:07:59Z",
-  "last_checked": "2026-05-06T22:27:35Z",
+  "state": "error",
+  "state_since": "2026-05-06T23:26:37Z",
+  "last_checked": "2026-05-06T23:26:37Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "snxm62gpxfc9",
+        "name": "Connection failures for organizations restricting GitHub access by IP address",
+        "url": "https://stspg.io/0vv7h1hfdddc",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Code"
+        ]
+      }
     }
   },
   "schema_version": 1
