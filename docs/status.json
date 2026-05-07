@@ -1,7 +1,7 @@
 {
   "state": "error",
   "state_since": "2026-05-06T23:26:37Z",
-  "last_checked": "2026-05-07T11:21:37Z",
+  "last_checked": "2026-05-07T13:11:14Z",
   "sources": {
     "anthropic": {
       "status": "incident",
@@ -9,10 +9,7 @@
         "id": "snxm62gpxfc9",
         "name": "Connection failures for organizations restricting GitHub access by IP address",
         "url": "https://stspg.io/0vv7h1hfdddc",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Code"
-        ]
+        "components_degraded": []
       }
     }
   },
