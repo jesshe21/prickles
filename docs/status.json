@@ -1,16 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-05-06T23:26:37Z",
-  "last_checked": "2026-05-07T15:35:53Z",
+  "state": "good",
+  "state_since": "2026-05-07T17:21:51Z",
+  "last_checked": "2026-05-07T17:21:51Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "snxm62gpxfc9",
-        "name": "Connection failures for organizations restricting GitHub access by IP address",
-        "url": "https://stspg.io/0vv7h1hfdddc",
-        "components_degraded": []
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
