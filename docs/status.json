@@ -1,11 +1,18 @@
 {
-  "state": "good",
-  "state_since": "2026-05-08T15:53:20Z",
-  "last_checked": "2026-05-08T21:40:26Z",
+  "state": "error",
+  "state_since": "2026-05-08T22:36:30Z",
+  "last_checked": "2026-05-08T22:36:30Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "w5cw47ytckzx",
+        "name": "Claude Code IDE extension unable to load on Windows",
+        "url": "https://stspg.io/txm5dwtbptxk",
+        "components_degraded": [
+          "Claude Code"
+        ]
+      }
     }
   },
   "schema_version": 1
