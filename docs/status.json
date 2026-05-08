@@ -1,11 +1,16 @@
 {
-  "state": "good",
-  "state_since": "2026-05-08T12:08:58Z",
-  "last_checked": "2026-05-08T12:08:58Z",
+  "state": "error",
+  "state_since": "2026-05-08T14:14:46Z",
+  "last_checked": "2026-05-08T14:14:46Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "vtt35dc73941",
+        "name": "Elevated Errors on File Operations",
+        "url": "https://stspg.io/yh3q9c4qgdvk",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
