@@ -1,11 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-05-14T22:32:53Z",
-  "last_checked": "2026-05-14T23:31:42Z",
+  "state": "error",
+  "state_since": "2026-05-15T01:23:47Z",
+  "last_checked": "2026-05-15T01:23:47Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "8z7l5zcy0v3b",
+        "name": "Elevated error rates on requests to some models",
+        "url": "https://stspg.io/xmrcmwz84zd5",
+        "components_degraded": [
+          "Claude API (api.anthropic.com)",
+          "Claude Code"
+        ]
+      }
     }
   },
   "schema_version": 1
