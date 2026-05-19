@@ -1,22 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-05-19T08:47:51Z",
-  "last_checked": "2026-05-19T08:47:51Z",
+  "state": "good",
+  "state_since": "2026-05-19T11:46:55Z",
+  "last_checked": "2026-05-19T11:46:55Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "qkwdrjxvkb9s",
-        "name": "Elevated errors on Claude Opus 4.7",
-        "url": "https://stspg.io/hq91gydspk6r",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Console (platform.claude.com)",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
