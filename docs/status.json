@@ -1,14 +1,14 @@
 {
   "state": "error",
   "state_since": "2026-05-22T07:02:31Z",
-  "last_checked": "2026-05-22T07:02:31Z",
+  "last_checked": "2026-05-22T10:27:47Z",
   "sources": {
     "anthropic": {
       "status": "incident",
       "active_incident": {
-        "id": "p0mgnjv3bj97",
-        "name": "Elevated error rate on multiple models",
-        "url": "https://stspg.io/fknlkqdwvwnm",
+        "id": "r1prbh7v5gcn",
+        "name": "Elevated errors on Claude Opus 4.7",
+        "url": "https://stspg.io/546qdwzgz0s9",
         "components_degraded": [
           "claude.ai",
           "Claude Console (platform.claude.com)",
