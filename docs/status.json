@@ -1,11 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-05-20T11:34:29Z",
-  "last_checked": "2026-05-22T03:40:13Z",
+  "state": "error",
+  "state_since": "2026-05-22T07:02:31Z",
+  "last_checked": "2026-05-22T07:02:31Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "p0mgnjv3bj97",
+        "name": "Elevated error rate on multiple models",
+        "url": "https://stspg.io/fknlkqdwvwnm",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
