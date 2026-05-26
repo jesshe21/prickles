@@ -1,18 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-05-26T04:34:39Z",
-  "last_checked": "2026-05-26T04:34:39Z",
+  "state": "good",
+  "state_since": "2026-05-26T08:07:02Z",
+  "last_checked": "2026-05-26T08:07:02Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "fl8sx824x72r",
-        "name": "Elevated errors for Claude Code in Slack",
-        "url": "https://stspg.io/m9vnslk2x1kx",
-        "components_degraded": [
-          "Claude Code"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
