@@ -1,16 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-05-27T06:10:48Z",
-  "last_checked": "2026-05-27T06:10:48Z",
+  "state": "good",
+  "state_since": "2026-05-27T10:19:07Z",
+  "last_checked": "2026-05-27T10:19:07Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "fw96fnc5bw45",
-        "name": "Elevated errors on Claude Opus 4.7",
-        "url": "https://stspg.io/w4j9tvxhrn0c",
-        "components_degraded": []
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
