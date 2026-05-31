@@ -1,19 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-05-30T23:40:09Z",
-  "last_checked": "2026-05-30T23:40:09Z",
+  "state": "good",
+  "state_since": "2026-05-31T01:51:06Z",
+  "last_checked": "2026-05-31T01:51:06Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "694jznhm6tsl",
-        "name": "opus 4.7 elevated errors",
-        "url": "https://stspg.io/5sy83gs4ytbw",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Console (platform.claude.com)"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
