@@ -1,18 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-06-03T05:17:05Z",
-  "last_checked": "2026-06-03T05:17:05Z",
+  "state": "good",
+  "state_since": "2026-06-03T10:10:31Z",
+  "last_checked": "2026-06-03T10:10:31Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "0w1blp7cngrr",
-        "name": "Issue affecting some Claude Code services",
-        "url": "https://stspg.io/26bl9ymsst7p",
-        "components_degraded": [
-          "Claude Code"
-        ]
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
