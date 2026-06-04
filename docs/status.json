@@ -1,12 +1,11 @@
 {
   "state": "good",
   "state_since": "2026-06-03T10:10:31Z",
-  "last_checked": "2026-06-04T02:01:12Z",
+  "last_checked": "2026-06-04T06:51:44Z",
   "sources": {
     "anthropic": {
-      "status": "unknown",
-      "active_incident": null,
-      "error": "HTTP Error 405: Not Allowed"
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
