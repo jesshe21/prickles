@@ -1,16 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-06-05T15:44:04Z",
-  "last_checked": "2026-06-05T17:32:54Z",
+  "state": "good",
+  "state_since": "2026-06-05T19:20:46Z",
+  "last_checked": "2026-06-05T19:20:46Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
-      "active_incident": {
-        "id": "fprlnsvdnr2k",
-        "name": "Elevated errors on many Claude models",
-        "url": "https://stspg.io/14frvys1dj2g",
-        "components_degraded": []
-      }
+      "status": "operational",
+      "active_incident": null
     }
   },
   "schema_version": 1
