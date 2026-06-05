@@ -1,7 +1,7 @@
 {
   "state": "error",
   "state_since": "2026-06-05T15:44:04Z",
-  "last_checked": "2026-06-05T15:44:04Z",
+  "last_checked": "2026-06-05T17:32:54Z",
   "sources": {
     "anthropic": {
       "status": "incident",
@@ -9,12 +9,7 @@
         "id": "fprlnsvdnr2k",
         "name": "Elevated errors on many Claude models",
         "url": "https://stspg.io/14frvys1dj2g",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
+        "components_degraded": []
       }
     }
   },
