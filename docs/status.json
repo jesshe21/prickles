@@ -1,11 +1,16 @@
 {
-  "state": "good",
-  "state_since": "2026-06-08T20:30:46Z",
-  "last_checked": "2026-06-09T16:44:41Z",
+  "state": "error",
+  "state_since": "2026-06-09T19:00:06Z",
+  "last_checked": "2026-06-09T19:00:06Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "wtcn4knnnfzc",
+        "name": "Fable not available in the model picker in Claude Code Desktop",
+        "url": "https://stspg.io/jb2jyj5prfmm",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
