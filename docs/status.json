@@ -1,15 +1,20 @@
 {
   "state": "error",
   "state_since": "2026-06-09T19:00:06Z",
-  "last_checked": "2026-06-09T19:00:06Z",
+  "last_checked": "2026-06-09T21:03:06Z",
   "sources": {
     "anthropic": {
       "status": "incident",
       "active_incident": {
-        "id": "wtcn4knnnfzc",
-        "name": "Fable not available in the model picker in Claude Code Desktop",
-        "url": "https://stspg.io/jb2jyj5prfmm",
-        "components_degraded": []
+        "id": "xwrtmlm3tnxf",
+        "name": "Elevated errors on Claude Opus 4.6",
+        "url": "https://stspg.io/l9wbh8vqh3k2",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
       }
     }
   },
