@@ -1,11 +1,21 @@
 {
-  "state": "good",
-  "state_since": "2026-06-09T22:43:43Z",
-  "last_checked": "2026-06-10T11:48:24Z",
+  "state": "error",
+  "state_since": "2026-06-10T14:41:27Z",
+  "last_checked": "2026-06-10T14:41:27Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "active_incident": null
+      "status": "incident",
+      "active_incident": {
+        "id": "32lyxmplb5wz",
+        "name": "Elevated errors on Claude Haiku 4.5",
+        "url": "https://stspg.io/hrq9j1llp424",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
