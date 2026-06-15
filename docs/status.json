@@ -1,10 +1,11 @@
 {
-  "state": "error",
-  "state_since": "2026-06-15T04:49:48Z",
-  "last_checked": "2026-06-15T19:54:49Z",
+  "state": "good",
+  "state_since": "2026-06-15T22:11:34Z",
+  "last_checked": "2026-06-15T22:11:34Z",
   "sources": {
     "anthropic": {
-      "status": "incident",
+      "status": "operational",
+      "indicator": "none",
       "active_incident": {
         "id": "s9w82lp9dcn9",
         "name": "We\u2019ve suspended access to Claude Mythos 5 and Claude Fable 5",
