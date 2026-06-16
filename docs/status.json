@@ -1,15 +1,15 @@
 {
   "state": "good",
   "state_since": "2026-06-16T21:43:10Z",
-  "last_checked": "2026-06-16T21:43:10Z",
+  "last_checked": "2026-06-16T23:10:03Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
       "active_incident": {
-        "id": "41395mspl1rf",
-        "name": "Elevated errors for Claude Opus 4.8",
-        "url": "https://stspg.io/tslzsk6f4hlf",
+        "id": "s9w82lp9dcn9",
+        "name": "We\u2019ve suspended access to Claude Mythos 5 and Claude Fable 5",
+        "url": "https://stspg.io/kqx0j625mrgv",
         "components_degraded": []
       }
     }
