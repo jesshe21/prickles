@@ -1,17 +1,13 @@
 {
   "state": "good",
   "state_since": "2026-06-17T06:49:23Z",
-  "last_checked": "2026-06-17T17:32:36Z",
+  "last_checked": "2026-06-17T19:37:58Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": {
-        "id": "s9w82lp9dcn9",
-        "name": "We\u2019ve suspended access to Claude Mythos 5 and Claude Fable 5",
-        "url": "https://stspg.io/kqx0j625mrgv",
-        "components_degraded": []
-      }
+      "status": "unknown",
+      "indicator": "unknown",
+      "active_incident": null,
+      "error": "HTTP Error 405: Not Allowed"
     }
   },
   "schema_version": 1
