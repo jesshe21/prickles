@@ -1,16 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-06-20T19:48:56Z",
-  "last_checked": "2026-06-23T12:18:12Z",
+  "state": "error",
+  "state_since": "2026-06-23T15:26:27Z",
+  "last_checked": "2026-06-23T15:26:27Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
+      "status": "major",
+      "indicator": "major",
       "active_incident": {
-        "id": "s9w82lp9dcn9",
-        "name": "We\u2019ve suspended access to Claude Mythos 5 and Claude Fable 5",
-        "url": "https://stspg.io/kqx0j625mrgv",
-        "components_degraded": []
+        "id": "jbhf20wjmzrf",
+        "name": "Elevated error rate across multiple models",
+        "url": "https://stspg.io/kx1ygc7qfvx1",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
       }
     }
   },
