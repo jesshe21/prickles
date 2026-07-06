@@ -1,9 +1,15 @@
 {
   "entries": [
     {
+      "state": "error",
+      "from": "2026-07-06T21:54:34Z",
+      "to": null,
+      "reason": "component_degraded"
+    },
+    {
       "state": "good",
       "from": "2026-07-04T01:18:05Z",
-      "to": null,
+      "to": "2026-07-06T21:54:34Z",
       "reason": "operational"
     },
     {
@@ -53,12 +59,6 @@
       "from": "2026-06-19T11:08:17Z",
       "to": "2026-06-20T18:01:08Z",
       "reason": "operational"
-    },
-    {
-      "state": "error",
-      "from": "2026-06-19T06:51:24Z",
-      "to": "2026-06-19T11:08:17Z",
-      "reason": "component_degraded"
     }
   ],
   "schema_version": 1

@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-07-04T01:18:05Z",
-  "last_checked": "2026-07-06T20:27:01Z",
+  "state": "error",
+  "state_since": "2026-07-06T21:54:34Z",
+  "last_checked": "2026-07-06T21:54:34Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "d23j8s7t8rx2",
+        "name": "Claude Tag seeing elevated GitHub operation failures",
+        "url": "https://stspg.io/0l8p9n8ky411",
+        "components_degraded": [
+          "Claude Code"
+        ]
+      }
     }
   },
   "schema_version": 1
