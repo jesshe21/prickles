@@ -1,22 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-07-08T06:39:00Z",
-  "last_checked": "2026-07-08T06:39:00Z",
+  "state": "good",
+  "state_since": "2026-07-08T09:11:47Z",
+  "last_checked": "2026-07-08T09:11:47Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "n3v83qmtlbqm",
-        "name": "Elevated errors on Claude Sonnet 5",
-        "url": "https://stspg.io/vsdzgydjjt1j",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
