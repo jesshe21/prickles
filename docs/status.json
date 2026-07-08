@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-07-08T18:08:39Z",
-  "last_checked": "2026-07-08T18:08:39Z",
+  "last_checked": "2026-07-08T19:52:28Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "dcxc66flmxbd",
-        "name": "Elevated errors on Claude Opus 4.8",
-        "url": "https://stspg.io/kt72q7m6rz9c",
+        "id": "rvb96c56gn6k",
+        "name": "Degraded performance for Claude Code on the web, Cowork Remote, Claude Tag, and Claude Code Review sessions",
+        "url": "https://stspg.io/th3djdzw5lsy",
         "components_degraded": [
           "claude.ai",
           "Claude API (api.anthropic.com)",
