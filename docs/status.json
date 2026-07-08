@@ -1,22 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-07-08T18:08:39Z",
-  "last_checked": "2026-07-08T20:51:29Z",
+  "state": "good",
+  "state_since": "2026-07-08T21:53:45Z",
+  "last_checked": "2026-07-08T21:53:45Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "rvb96c56gn6k",
-        "name": "Degraded performance for Claude Code on the web, Cowork Remote, Claude Tag, and Claude Code Review sessions",
-        "url": "https://stspg.io/th3djdzw5lsy",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
