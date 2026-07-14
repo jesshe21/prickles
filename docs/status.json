@@ -1,19 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-07-14T21:36:37Z",
-  "last_checked": "2026-07-14T21:36:37Z",
+  "state": "good",
+  "state_since": "2026-07-14T22:35:16Z",
+  "last_checked": "2026-07-14T22:35:16Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "89rcltb8qg63",
-        "name": "Partial outage of claude.ai: container creation",
-        "url": "https://stspg.io/7vd6cvlw38jb",
-        "components_degraded": [
-          "claude.ai"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
