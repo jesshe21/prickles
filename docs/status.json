@@ -1,7 +1,7 @@
 {
   "state": "error",
   "state_since": "2026-07-16T08:59:18Z",
-  "last_checked": "2026-07-16T08:59:18Z",
+  "last_checked": "2026-07-16T11:03:26Z",
   "sources": {
     "anthropic": {
       "status": "minor",
@@ -11,8 +11,6 @@
         "name": "Elevated errors for Claude Opus 4.7",
         "url": "https://stspg.io/3vvl4w8559r5",
         "components_degraded": [
-          "claude.ai",
-          "Claude Console (platform.claude.com)",
           "Claude API (api.anthropic.com)",
           "Claude Code",
           "Claude Cowork"
