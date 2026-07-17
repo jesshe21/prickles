@@ -1,22 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-07-17T08:36:58Z",
-  "last_checked": "2026-07-17T11:47:09Z",
+  "state": "good",
+  "state_since": "2026-07-17T12:49:46Z",
+  "last_checked": "2026-07-17T12:49:46Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "7gpjd8n56rlq",
-        "name": "Elevated errors on Sonnet 5 and Haiku 4.5",
-        "url": "https://stspg.io/p0rgrvqnx02s",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
