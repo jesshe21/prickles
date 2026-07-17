@@ -1,22 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-07-17T18:56:47Z",
-  "last_checked": "2026-07-17T18:56:47Z",
+  "state": "good",
+  "state_since": "2026-07-17T20:04:38Z",
+  "last_checked": "2026-07-17T20:04:38Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "g613ntyj2pwf",
-        "name": "Elevated errors across Fable 5",
-        "url": "https://stspg.io/rxyp2wg9jxcw",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
