@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-07-20T16:08:48Z",
-  "last_checked": "2026-07-20T16:08:48Z",
+  "last_checked": "2026-07-20T18:16:19Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "4n0mmv2v41rf",
-        "name": "Elevated errors for Claude Opus 4.8",
-        "url": "https://stspg.io/b4rjxhq1j4nb",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
