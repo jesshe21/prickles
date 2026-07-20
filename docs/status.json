@@ -1,16 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-07-20T12:04:30Z",
-  "last_checked": "2026-07-20T12:04:30Z",
+  "state": "error",
+  "state_since": "2026-07-20T14:28:58Z",
+  "last_checked": "2026-07-20T14:28:58Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
+      "status": "minor",
+      "indicator": "minor",
       "active_incident": {
-        "id": "hlt0yqp4lkww",
-        "name": "Elevated error rates for Opus 4.5",
-        "url": "https://stspg.io/lzrpkz4y2ry9",
-        "components_degraded": []
+        "id": "s39rkbp2xhpd",
+        "name": "Elevated errors on Haiku 4.5",
+        "url": "https://stspg.io/ths0tjh6ntg6",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
       }
     }
   },
