@@ -1,12 +1,23 @@
 {
-  "state": "good",
-  "state_since": "2026-07-20T16:08:48Z",
-  "last_checked": "2026-07-21T06:16:00Z",
+  "state": "error",
+  "state_since": "2026-07-21T08:47:51Z",
+  "last_checked": "2026-07-21T08:47:51Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "v35b71rthzhp",
+        "name": "Elevated errors on Haiku 4.5",
+        "url": "https://stspg.io/ng8pvt69fcnf",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
