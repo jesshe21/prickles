@@ -1,16 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-07-21T12:15:45Z",
-  "last_checked": "2026-07-21T14:25:16Z",
+  "state": "error",
+  "state_since": "2026-07-21T15:59:31Z",
+  "last_checked": "2026-07-21T15:59:31Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
+      "status": "minor",
+      "indicator": "minor",
       "active_incident": {
-        "id": "j0y67nj6w93z",
-        "name": "Elevated errors on Haiku 4.5",
-        "url": "https://stspg.io/zbk8jlprqymy",
-        "components_degraded": []
+        "id": "vcynh9cf33xp",
+        "name": "Elevated errors on several models",
+        "url": "https://stspg.io/74sqh6d7f9vq",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
       }
     }
   },
