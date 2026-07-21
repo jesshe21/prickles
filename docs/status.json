@@ -1,12 +1,17 @@
 {
   "state": "good",
   "state_since": "2026-07-21T12:15:45Z",
-  "last_checked": "2026-07-21T12:15:45Z",
+  "last_checked": "2026-07-21T14:25:16Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": null
+      "active_incident": {
+        "id": "j0y67nj6w93z",
+        "name": "Elevated errors on Haiku 4.5",
+        "url": "https://stspg.io/zbk8jlprqymy",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
