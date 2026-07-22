@@ -1,19 +1,16 @@
 {
-  "state": "error",
-  "state_since": "2026-07-22T14:48:53Z",
-  "last_checked": "2026-07-22T17:39:25Z",
+  "state": "good",
+  "state_since": "2026-07-22T18:45:52Z",
+  "last_checked": "2026-07-22T18:45:52Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
+      "status": "operational",
+      "indicator": "none",
       "active_incident": {
-        "id": "ng5shnqxj1r7",
-        "name": "Service disruption on Claude Services",
-        "url": "https://stspg.io/3c161l5nt3kz",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Cowork"
-        ]
+        "id": "yc7mr2gvl914",
+        "name": "Microsoft Office add-in availability",
+        "url": "https://stspg.io/62bq6fn8w887",
+        "components_degraded": []
       }
     }
   },
