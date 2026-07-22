@@ -1,12 +1,23 @@
 {
-  "state": "good",
-  "state_since": "2026-07-21T17:26:18Z",
-  "last_checked": "2026-07-22T12:50:27Z",
+  "state": "error",
+  "state_since": "2026-07-22T14:48:53Z",
+  "last_checked": "2026-07-22T14:48:53Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "f7w8qkd8z57f",
+        "name": "Elevated errors on Opus 4.8 and Haiku 4.5",
+        "url": "https://stspg.io/5fhdrrh8wbq1",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
