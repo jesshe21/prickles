@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-07-22T18:45:52Z",
-  "last_checked": "2026-07-24T14:07:13Z",
+  "last_checked": "2026-07-24T15:41:17Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "yc7mr2gvl914",
-        "name": "Microsoft Office add-in availability",
-        "url": "https://stspg.io/62bq6fn8w887",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
