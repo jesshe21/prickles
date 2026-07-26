@@ -1,12 +1,23 @@
 {
-  "state": "good",
-  "state_since": "2026-07-25T20:28:21Z",
-  "last_checked": "2026-07-26T07:14:55Z",
+  "state": "error",
+  "state_since": "2026-07-26T09:24:49Z",
+  "last_checked": "2026-07-26T09:24:49Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "zftg3gqkmv18",
+        "name": "Elevated errors for Opus 5",
+        "url": "https://stspg.io/jrz1yk46f9xp",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Console (platform.claude.com)",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
