@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-07-27T08:23:48Z",
-  "last_checked": "2026-07-27T11:47:01Z",
+  "last_checked": "2026-07-27T14:00:34Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "mfdtrknpxghq",
+        "id": "rkk5x44tndw9",
         "name": "Elevated errors on Claude Opus 5",
-        "url": "https://stspg.io/wlr90hdngtwn",
+        "url": "https://stspg.io/n0k1648rmm55",
         "components_degraded": [
           "claude.ai",
           "Claude API (api.anthropic.com)",
