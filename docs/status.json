@@ -1,12 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-07-27T16:27:00Z",
-  "last_checked": "2026-07-29T18:29:01Z",
+  "state": "error",
+  "state_since": "2026-07-29T19:52:45Z",
+  "last_checked": "2026-07-29T19:52:45Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "major",
+      "indicator": "major",
+      "active_incident": {
+        "id": "q2kg8n613kr3",
+        "name": "Elevated errors across all models",
+        "url": "https://stspg.io/p7pqqb00414c",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
