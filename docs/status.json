@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-07-30T11:22:20Z",
-  "last_checked": "2026-08-04T21:47:07Z",
+  "last_checked": "2026-08-04T22:46:30Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "bdr3fq2rkchr",
-        "name": "Elevated errors across many models",
-        "url": "https://stspg.io/smnf386prrtx",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
