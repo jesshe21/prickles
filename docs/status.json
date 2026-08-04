@@ -1,12 +1,17 @@
 {
   "state": "good",
   "state_since": "2026-07-30T11:22:20Z",
-  "last_checked": "2026-08-04T04:19:08Z",
+  "last_checked": "2026-08-04T06:44:47Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": null
+      "active_incident": {
+        "id": "8k9mjhq7wmv3",
+        "name": "Elevated errors on Claude Sonnet 5",
+        "url": "https://stspg.io/f0lj38zvb6qm",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
