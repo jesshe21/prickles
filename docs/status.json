@@ -1,22 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-08-13T14:54:26Z",
-  "last_checked": "2026-08-13T17:40:37Z",
+  "state": "good",
+  "state_since": "2026-08-13T18:36:21Z",
+  "last_checked": "2026-08-13T18:36:21Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": null,
-        "name": null,
-        "url": null,
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
