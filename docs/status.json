@@ -1,7 +1,7 @@
 {
   "state": "error",
   "state_since": "2026-08-14T20:49:03Z",
-  "last_checked": "2026-08-14T22:18:01Z",
+  "last_checked": "2026-08-14T22:43:08Z",
   "sources": {
     "anthropic": {
       "status": "minor",
@@ -11,7 +11,6 @@
         "name": null,
         "url": null,
         "components_degraded": [
-          "Claude API (api.anthropic.com)",
           "Claude Code",
           "Claude Cowork"
         ]
