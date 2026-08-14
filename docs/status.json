@@ -1,20 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-08-14T20:49:03Z",
-  "last_checked": "2026-08-14T22:43:08Z",
+  "state": "good",
+  "state_since": "2026-08-14T22:59:37Z",
+  "last_checked": "2026-08-14T22:59:37Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": null,
-        "name": null,
-        "url": null,
-        "components_degraded": [
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
