@@ -1,7 +1,7 @@
 {
   "state": "good",
   "state_since": "2026-08-13T18:36:21Z",
-  "last_checked": "2026-08-14T12:02:33Z",
+  "last_checked": "2026-08-14T13:24:29Z",
   "sources": {
     "anthropic": {
       "status": "operational",
