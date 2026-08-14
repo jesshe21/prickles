@@ -1,13 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-08-13T18:36:21Z",
-  "last_checked": "2026-08-14T10:33:52Z",
+  "last_checked": "2026-08-14T11:22:30Z",
   "sources": {
     "anthropic": {
-      "status": "unknown",
-      "indicator": "unknown",
-      "active_incident": null,
-      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'status.claude.com'. (_ssl.c:1010)>"
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
