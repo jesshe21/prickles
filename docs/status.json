@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-08-14T22:59:37Z",
-  "last_checked": "2026-08-14T23:46:19Z",
+  "state": "error",
+  "state_since": "2026-08-15T00:01:23Z",
+  "last_checked": "2026-08-15T00:01:23Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "hdynq1pc0fn8",
+        "name": "Elevated errors for Claude Fable 5",
+        "url": "https://stspg.io/vpnnwf2vhdv4",
+        "components_degraded": [
+          "claude.ai"
+        ]
+      }
     }
   },
   "schema_version": 1
