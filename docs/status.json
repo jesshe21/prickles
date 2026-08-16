@@ -1,23 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-08-16T22:08:54Z",
-  "last_checked": "2026-08-16T22:34:06Z",
+  "state": "good",
+  "state_since": "2026-08-16T22:52:03Z",
+  "last_checked": "2026-08-16T22:52:03Z",
   "sources": {
     "anthropic": {
-      "status": "major",
-      "indicator": "major",
-      "active_incident": {
-        "id": "qt14v73myyy5",
-        "name": "Service disruption on Claude services",
-        "url": "https://stspg.io/cc6kmwrqhzmh",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Console (platform.claude.com)",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
