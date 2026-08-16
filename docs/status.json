@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-08-16T22:08:54Z",
-  "last_checked": "2026-08-16T22:08:54Z",
+  "last_checked": "2026-08-16T22:34:06Z",
   "sources": {
     "anthropic": {
       "status": "major",
       "indicator": "major",
       "active_incident": {
-        "id": "qzfvhfg85r6t",
+        "id": "qt14v73myyy5",
         "name": "Service disruption on Claude services",
-        "url": "https://stspg.io/j00nrtp2ckrf",
+        "url": "https://stspg.io/cc6kmwrqhzmh",
         "components_degraded": [
           "claude.ai",
           "Claude Console (platform.claude.com)",
