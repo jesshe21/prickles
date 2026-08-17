@@ -1,12 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-08-16T22:52:03Z",
-  "last_checked": "2026-08-17T13:51:08Z",
+  "state": "error",
+  "state_since": "2026-08-17T14:13:12Z",
+  "last_checked": "2026-08-17T14:13:12Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "zhk4v3yv1lsf",
+        "name": "Degraded performance for Claude Opus 5",
+        "url": "https://stspg.io/dw9p8s0wg6hh",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
