@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-08-17T14:45:00Z",
-  "last_checked": "2026-08-17T15:03:32Z",
+  "last_checked": "2026-08-17T15:33:58Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "zhk4v3yv1lsf",
-        "name": "Degraded performance for Claude Opus 5, Claude Sonnet 5",
-        "url": "https://stspg.io/dw9p8s0wg6hh",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
