@@ -1,21 +1,16 @@
 {
-  "state": "error",
-  "state_since": "2026-08-17T14:13:12Z",
-  "last_checked": "2026-08-17T14:13:12Z",
+  "state": "good",
+  "state_since": "2026-08-17T14:45:00Z",
+  "last_checked": "2026-08-17T14:45:00Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
+      "status": "operational",
+      "indicator": "none",
       "active_incident": {
         "id": "zhk4v3yv1lsf",
-        "name": "Degraded performance for Claude Opus 5",
+        "name": "Degraded performance for Claude Opus 5, Claude Sonnet 5",
         "url": "https://stspg.io/dw9p8s0wg6hh",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
+        "components_degraded": []
       }
     }
   },
