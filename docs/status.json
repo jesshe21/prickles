@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-08-18T18:49:56Z",
-  "last_checked": "2026-08-18T18:49:56Z",
+  "last_checked": "2026-08-18T19:17:08Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "q7txxvbsftgq",
-        "name": "Degraded performance for multiple models",
-        "url": "https://stspg.io/tcsfmtc03xgm",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
