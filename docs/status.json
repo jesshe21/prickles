@@ -1,21 +1,16 @@
 {
-  "state": "error",
-  "state_since": "2026-08-18T16:47:34Z",
-  "last_checked": "2026-08-18T18:01:35Z",
+  "state": "good",
+  "state_since": "2026-08-18T18:49:56Z",
+  "last_checked": "2026-08-18T18:49:56Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
+      "status": "operational",
+      "indicator": "none",
       "active_incident": {
         "id": "q7txxvbsftgq",
         "name": "Degraded performance for multiple models",
         "url": "https://stspg.io/tcsfmtc03xgm",
-        "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
-        ]
+        "components_degraded": []
       }
     }
   },
