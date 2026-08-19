@@ -1,7 +1,7 @@
 {
   "state": "error",
   "state_since": "2026-08-19T09:52:28Z",
-  "last_checked": "2026-08-19T09:52:28Z",
+  "last_checked": "2026-08-19T10:13:42Z",
   "sources": {
     "anthropic": {
       "status": "minor",
