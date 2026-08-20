@@ -1,12 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-08-19T10:46:35Z",
-  "last_checked": "2026-08-20T18:13:09Z",
+  "state": "error",
+  "state_since": "2026-08-20T18:58:52Z",
+  "last_checked": "2026-08-20T18:58:52Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "6xskhw7rn4tf",
+        "name": "Elevated errors on Google connectors",
+        "url": "https://stspg.io/lmcgl9dpjxk0",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
