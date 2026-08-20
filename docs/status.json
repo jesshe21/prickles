@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-08-20T18:58:52Z",
-  "last_checked": "2026-08-20T18:58:52Z",
+  "last_checked": "2026-08-20T19:33:58Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "6xskhw7rn4tf",
-        "name": "Elevated errors on Google connectors",
-        "url": "https://stspg.io/lmcgl9dpjxk0",
+        "id": "c0ncxxm2wd9r",
+        "name": "Elevated errors on requests to multiple models",
+        "url": "https://stspg.io/w7yghz6hfr72",
         "components_degraded": [
           "claude.ai",
           "Claude API (api.anthropic.com)",
