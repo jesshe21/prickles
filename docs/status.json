@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-08-24T09:09:56Z",
-  "last_checked": "2026-08-24T16:44:02Z",
+  "state": "error",
+  "state_since": "2026-08-24T17:16:06Z",
+  "last_checked": "2026-08-24T17:16:06Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "w43j3xmngxgj",
+        "name": "Errors logging into Claude.ai",
+        "url": "https://stspg.io/kg59rclpfzsz",
+        "components_degraded": [
+          "claude.ai"
+        ]
+      }
     }
   },
   "schema_version": 1
