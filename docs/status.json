@@ -1,12 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-08-20T19:58:07Z",
-  "last_checked": "2026-08-24T04:27:00Z",
+  "state": "error",
+  "state_since": "2026-08-24T05:10:54Z",
+  "last_checked": "2026-08-24T05:10:54Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "vgz5psbjmt1h",
+        "name": "Elevated errors for multiple models",
+        "url": "https://stspg.io/5kzdprb1xsbx",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
