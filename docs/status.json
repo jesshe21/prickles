@@ -1,20 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-09-01T17:52:00Z",
-  "last_checked": "2026-09-01T17:52:00Z",
+  "state": "good",
+  "state_since": "2026-09-01T20:10:45Z",
+  "last_checked": "2026-09-01T20:10:45Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "3g3d55q6vk3h",
-        "name": "Degraded performance on platform.claude.com and Claude for Microsoft Office 365",
-        "url": "https://stspg.io/4rf459q4pjc3",
-        "components_degraded": [
-          "claude.ai",
-          "Claude Console (platform.claude.com)"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
