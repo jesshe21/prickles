@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-09-01T20:10:45Z",
-  "last_checked": "2026-09-01T22:35:48Z",
+  "state": "error",
+  "state_since": "2026-09-02T00:29:42Z",
+  "last_checked": "2026-09-02T00:29:42Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "620swtqyn24k",
+        "name": "Delays in credit purchases",
+        "url": "https://stspg.io/jc510qy51bfh",
+        "components_degraded": [
+          "Claude Console (platform.claude.com)"
+        ]
+      }
     }
   },
   "schema_version": 1
