@@ -1,16 +1,17 @@
 {
   "state": "error",
   "state_since": "2026-09-10T17:11:32Z",
-  "last_checked": "2026-09-10T19:40:39Z",
+  "last_checked": "2026-09-10T21:53:18Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "r1pqn1kb4hvk",
-        "name": "Degraded functionality for Claude Cowork on Windows",
-        "url": "https://stspg.io/5yp3rhhztm30",
+        "id": "2pt83vlkk7x7",
+        "name": "Degraded performance on the Claude API",
+        "url": "https://stspg.io/hfs7749ykl14",
         "components_degraded": [
+          "Claude API (api.anthropic.com)",
           "Claude Cowork"
         ]
       }
