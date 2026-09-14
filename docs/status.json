@@ -1,19 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-09-10T17:11:32Z",
-  "last_checked": "2026-09-14T18:36:42Z",
+  "state": "good",
+  "state_since": "2026-09-14T22:00:42Z",
+  "last_checked": "2026-09-14T22:00:42Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "r1pqn1kb4hvk",
-        "name": "Degraded functionality for Claude Cowork on Windows",
-        "url": "https://stspg.io/5yp3rhhztm30",
-        "components_degraded": [
-          "Claude Cowork"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
