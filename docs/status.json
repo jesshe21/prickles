@@ -1,12 +1,22 @@
 {
-  "state": "good",
-  "state_since": "2026-09-14T22:00:42Z",
-  "last_checked": "2026-09-15T05:08:38Z",
+  "state": "error",
+  "state_since": "2026-09-15T10:01:55Z",
+  "last_checked": "2026-09-15T10:01:55Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "6304r9jjhj34",
+        "name": "Intermittent error spikes for Claude Mythos 5.1 and Claude Fable 5.1",
+        "url": "https://stspg.io/x1qpycpg6ln7",
+        "components_degraded": [
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
