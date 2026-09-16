@@ -1,12 +1,17 @@
 {
   "state": "good",
   "state_since": "2026-09-15T14:51:36Z",
-  "last_checked": "2026-09-16T12:09:28Z",
+  "last_checked": "2026-09-16T16:49:43Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": null
+      "active_incident": {
+        "id": "t8fpw9vcshl9",
+        "name": "Issues with Google Play subscriptions",
+        "url": "https://stspg.io/wzwyxh4x9t39",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
