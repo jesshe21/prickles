@@ -1,17 +1,12 @@
 {
   "state": "good",
   "state_since": "2026-09-22T06:07:06Z",
-  "last_checked": "2026-10-01T19:01:00Z",
+  "last_checked": "2026-10-01T23:04:04Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": {
-        "id": "k0h22tsvnydg",
-        "name": "Delayed credits on the Claude Platform",
-        "url": "https://stspg.io/jg26d0skzh27",
-        "components_degraded": []
-      }
+      "active_incident": null
     }
   },
   "schema_version": 1
