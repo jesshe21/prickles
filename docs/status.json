@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-10-07T07:44:35Z",
-  "last_checked": "2026-10-07T07:44:35Z",
+  "state": "error",
+  "state_since": "2026-10-07T14:45:25Z",
+  "last_checked": "2026-10-07T14:45:25Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "978mjkgw6mh7",
+        "name": "Elevated errors on platform.claude.com",
+        "url": "https://stspg.io/sjkw7njwf0mt",
+        "components_degraded": [
+          "Claude Console (platform.claude.com)"
+        ]
+      }
     }
   },
   "schema_version": 1
