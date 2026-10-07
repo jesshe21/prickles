@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-09-22T06:07:06Z",
-  "last_checked": "2026-10-06T22:52:35Z",
+  "state": "error",
+  "state_since": "2026-10-07T01:51:35Z",
+  "last_checked": "2026-10-07T01:51:35Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "wf2v8ms031sx",
+        "name": "Elevated errors loading usage data on platform.claude.com",
+        "url": "https://stspg.io/scdhhnplc2jn",
+        "components_degraded": [
+          "Claude Console (platform.claude.com)"
+        ]
+      }
     }
   },
   "schema_version": 1
