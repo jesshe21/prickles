@@ -1,12 +1,20 @@
 {
-  "state": "good",
-  "state_since": "2026-10-13T21:57:34Z",
-  "last_checked": "2026-10-22T00:51:35Z",
+  "state": "error",
+  "state_since": "2026-10-22T05:29:56Z",
+  "last_checked": "2026-10-22T05:29:56Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "wj6r4t6mxq1r",
+        "name": "Elevated errors affecting Connectors",
+        "url": "https://stspg.io/4dcr8c005yxc",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
