@@ -1,12 +1,21 @@
 {
-  "state": "good",
-  "state_since": "2026-10-22T10:30:31Z",
-  "last_checked": "2026-10-28T14:23:01Z",
+  "state": "error",
+  "state_since": "2026-10-28T19:40:52Z",
+  "last_checked": "2026-10-28T19:40:52Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "phg1y2yh07n2",
+        "name": "Elevated errors affecting the Google Calendar connector",
+        "url": "https://stspg.io/75qq31h8672d",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Code",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
