@@ -1,12 +1,20 @@
 {
-  "state": "good",
-  "state_since": "2026-10-28T23:32:48Z",
-  "last_checked": "2026-11-12T12:25:20Z",
+  "state": "error",
+  "state_since": "2026-11-12T20:13:51Z",
+  "last_checked": "2026-11-12T20:13:51Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "sqn3fg1l96dl",
+        "name": "Elevated errors affecting the Microsoft 365 connector",
+        "url": "https://stspg.io/m0rbx38nmy1c",
+        "components_degraded": [
+          "claude.ai",
+          "Claude Cowork"
+        ]
+      }
     }
   },
   "schema_version": 1
