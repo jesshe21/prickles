@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-11-14T01:45:21Z",
-  "last_checked": "2026-11-14T01:45:21Z",
+  "state": "error",
+  "state_since": "2026-11-14T08:04:32Z",
+  "last_checked": "2026-11-14T08:04:32Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "ct4c2pwf2xpj",
+        "name": "Some users unable to sign up with Apple on the Claude iOS app",
+        "url": "https://stspg.io/4858wf40dx89",
+        "components_degraded": [
+          "claude.ai"
+        ]
+      }
     }
   },
   "schema_version": 1
