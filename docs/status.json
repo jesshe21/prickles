@@ -1,17 +1,20 @@
 {
   "state": "error",
   "state_since": "2026-11-14T08:04:32Z",
-  "last_checked": "2026-11-16T01:26:10Z",
+  "last_checked": "2026-11-16T08:16:22Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "ct4c2pwf2xpj",
-        "name": "Some users unable to sign up with Apple on the Claude iOS app",
-        "url": "https://stspg.io/4858wf40dx89",
+        "id": "r1b4f9bbnsx1",
+        "name": "Elevated errors for Claude Sonnet 5.5 and Claude Fable 5.2",
+        "url": "https://stspg.io/n18qjkd7dt4q",
         "components_degraded": [
-          "claude.ai"
+          "claude.ai",
+          "Claude API (api.anthropic.com)",
+          "Claude Code",
+          "Claude Cowork"
         ]
       }
     }
