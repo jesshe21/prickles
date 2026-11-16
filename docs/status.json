@@ -1,20 +1,17 @@
 {
   "state": "error",
   "state_since": "2026-11-14T08:04:32Z",
-  "last_checked": "2026-11-16T08:16:22Z",
+  "last_checked": "2026-11-16T18:38:02Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "r1b4f9bbnsx1",
-        "name": "Elevated errors for Claude Sonnet 5.5 and Claude Fable 5.2",
-        "url": "https://stspg.io/n18qjkd7dt4q",
+        "id": "b5cq662qf2wm",
+        "name": "Claude unable to join meetings",
+        "url": "https://stspg.io/01qq3kzyyqzl",
         "components_degraded": [
-          "claude.ai",
-          "Claude API (api.anthropic.com)",
-          "Claude Code",
-          "Claude Cowork"
+          "claude.ai"
         ]
       }
     }
