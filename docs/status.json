@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-11-14T08:04:32Z",
-  "last_checked": "2026-11-17T10:33:18Z",
+  "last_checked": "2026-11-17T19:18:50Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "b5cq662qf2wm",
-        "name": "Claude unable to join meetings",
-        "url": "https://stspg.io/01qq3kzyyqzl",
+        "id": "1lglzf469c0z",
+        "name": "Some users unable to sign in with Apple on claude.ai and the Claude iOS app",
+        "url": "https://stspg.io/3tl6h35nnzwm",
         "components_degraded": [
           "claude.ai"
         ]
