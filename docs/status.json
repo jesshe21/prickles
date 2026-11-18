@@ -1,15 +1,15 @@
 {
   "state": "error",
   "state_since": "2026-11-14T08:04:32Z",
-  "last_checked": "2026-11-18T01:40:53Z",
+  "last_checked": "2026-11-18T09:08:13Z",
   "sources": {
     "anthropic": {
       "status": "minor",
       "indicator": "minor",
       "active_incident": {
-        "id": "6prv10gjdpz1",
-        "name": "Elevated errors affecting the Google Docs connector",
-        "url": "https://stspg.io/qz7tfhb7sl68",
+        "id": "b5cq662qf2wm",
+        "name": "Claude unable to join meetings",
+        "url": "https://stspg.io/01qq3kzyyqzl",
         "components_degraded": [
           "claude.ai"
         ]
