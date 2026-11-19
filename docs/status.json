@@ -1,19 +1,12 @@
 {
-  "state": "error",
-  "state_since": "2026-11-14T08:04:32Z",
-  "last_checked": "2026-11-19T00:03:21Z",
+  "state": "good",
+  "state_since": "2026-11-19T07:11:30Z",
+  "last_checked": "2026-11-19T07:11:30Z",
   "sources": {
     "anthropic": {
-      "status": "minor",
-      "indicator": "minor",
-      "active_incident": {
-        "id": "b5cq662qf2wm",
-        "name": "Claude unable to join meetings",
-        "url": "https://stspg.io/01qq3kzyyqzl",
-        "components_degraded": [
-          "claude.ai"
-        ]
-      }
+      "status": "operational",
+      "indicator": "none",
+      "active_incident": null
     }
   },
   "schema_version": 1
