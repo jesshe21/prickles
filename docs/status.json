@@ -1,12 +1,17 @@
 {
   "state": "good",
   "state_since": "2026-11-19T07:11:30Z",
-  "last_checked": "2026-11-23T02:30:53Z",
+  "last_checked": "2026-11-23T11:07:18Z",
   "sources": {
     "anthropic": {
       "status": "operational",
       "indicator": "none",
-      "active_incident": null
+      "active_incident": {
+        "id": "yzs0s90d8fm8",
+        "name": "Elevated errors for multiple models",
+        "url": "https://stspg.io/q2ptbwdjx31m",
+        "components_degraded": []
+      }
     }
   },
   "schema_version": 1
