@@ -1,12 +1,19 @@
 {
-  "state": "good",
-  "state_since": "2026-11-19T07:11:30Z",
-  "last_checked": "2026-11-23T22:34:28Z",
+  "state": "error",
+  "state_since": "2026-11-24T06:19:45Z",
+  "last_checked": "2026-11-24T06:19:45Z",
   "sources": {
     "anthropic": {
-      "status": "operational",
-      "indicator": "none",
-      "active_incident": null
+      "status": "minor",
+      "indicator": "minor",
+      "active_incident": {
+        "id": "3vbyqgnswwxq",
+        "name": "Claude for Microsoft 365 add-in missing for some users",
+        "url": "https://stspg.io/ffdq2qfv8frk",
+        "components_degraded": [
+          "claude.ai"
+        ]
+      }
     }
   },
   "schema_version": 1
